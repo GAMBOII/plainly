@@ -5,6 +5,29 @@ every substantial task. See `AGENTS.md` for the update protocol.
 
 ---
 
+## Native "welcome back" fix — 2026-09-30
+
+Owner report: clicking "Continue with Yourkly" on the landing page dropped her
+into projects she made the previous week, with no login and no explanation —
+it felt like being signed into an account nobody signed into.
+
+Root cause: native projects live in the browser's local storage, so they
+persist across visits with no identity at all. The landing page never said
+that, and neither did the projects page. Not a session bug: the GitHub session
+cookie (`plainly_session`) expires after 8 hours and cannot restore a week-old
+login.
+
+- `src/pages/Welcome.jsx`: counts native projects in local storage; when at
+  least one exists, a line under the "Continue with Yourkly" button says
+  "Welcome back — you have N project(s) saved on this device."
+- `src/pages/NativeProjects.jsx`: added a line under the workspace heading —
+  "These live in this browser on this device, so there's no login — but they
+  won't follow you to another device unless you export them."
+- No route, auth, or storage changes. No new dependencies.
+- Validation: `npm run build` passed. Imports resolve; both edits re-read.
+- Status: implemented locally on `yourkly-rebrand`, not committed (owner has
+  not asked for a commit on this change yet).
+
 ## Native project setup spacing — 2026-09-25
 
 Published for review in PR #19 on `fix/native-project-spacing`, based on main `7eaecc2`.
