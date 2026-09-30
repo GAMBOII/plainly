@@ -100,27 +100,6 @@ export default function Welcome() {
     )
   }
 
-  if (onboarding === 'native') {
-    return (
-      <div className="welcome-page onboarding-page mobile-flow mobile-flow--native">
-        <div className="onboarding-shell">
-          <header className="landing-header"><BrandWordmark className="brand-wordmark--landing" /><button type="button" className="landing-signin" onClick={startSignIn}>Sign in</button></header>
-          <button type="button" className="back-link onboarding-back" onClick={() => setOnboarding('choose')}>← Back</button>
-          <div className="onboarding-progress"><span>YOURKLY PROJECTS</span><i><b className="onboarding-progress--two" /></i></div>
-          <h1>Use Yourkly without GitHub</h1>
-          <p className="onboarding-lead">Yourkly can keep your project, versions, and changes without asking you to create or connect a GitHub account.</p>
-          <div className="onboarding-checklist">
-            <div><strong>Keep it with Yourkly</strong><small>Your files and version history stay in your Yourkly project.</small></div>
-            <div><strong>Work in plain language</strong><small>No repositories, commits, branches, or GitHub setup.</small></div>
-            <div><strong>Export when you want</strong><small>You are not locked in. GitHub can be connected later if you choose.</small></div>
-          </div>
-          <button type="button" className="landing-cta" onClick={() => navigate('/join')}>Start with Yourkly</button>
-          <button type="button" className="text-button" onClick={startSignIn}>I'd rather connect GitHub</button>
-        </div>
-      </div>
-    )
-  }
-
   if (onboarding === 'github') {
     return (
       <div className="welcome-page onboarding-page mobile-flow mobile-flow--github">
