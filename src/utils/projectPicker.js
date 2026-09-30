@@ -1,7 +1,7 @@
 /**
- * projectPicker.js — which projects appear in Plainly.
+ * projectPicker.js — which projects appear in Yourkly.
  *
- * Plainly now asks GitHub for everything the account can reach: your own
+ * Yourkly now asks GitHub for everything the account can reach: your own
  * projects, ones shared with you, and every repository in every organisation
  * you belong to. For some accounts that is four projects. For others it is
  * several hundred, most of which you will never touch.
@@ -9,7 +9,7 @@
  * So you can choose. Two rules, both about not lying:
  *
  *   1. Choosing nothing shows everything. A first-time user must never open
- *      Plainly to an empty list because of a setting they didn't set.
+ *      Yourkly to an empty list because of a setting they didn't set.
  *   2. When a choice is active, the screen says how many are hidden. A
  *      filtered list presented as the whole list is a false statement.
  *

@@ -22,7 +22,7 @@ export function useProject(auth) {
   }
 }
 
-/** Where a project lives in Plainly. Use this instead of writing the path out. */
+/** Where a project lives in Yourkly. Use this instead of writing the path out. */
 export function projectPath(owner, repo, page = '') {
   const base = `/p/${owner}/${repo}`
   return page ? `${base}/${page}` : base

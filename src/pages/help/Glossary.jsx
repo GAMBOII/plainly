@@ -1,9 +1,9 @@
 /**
  * help/Glossary.jsx — /help/glossary
  *
- * Every word Plainly uses and the GitHub word it replaces, as a table you can
+ * Every word Yourkly uses and the GitHub word it replaces, as a table you can
  * filter. The toggle flips which column you're looking things up by: you came
- * with a Plainly word, or you came with a GitHub word someone else used.
+ * with a Yourkly word, or you came with a GitHub word someone else used.
  */
 
 import { useState } from 'react'
@@ -34,14 +34,14 @@ export default function Glossary() {
     ? [...rows].sort((a, b) => a.github.localeCompare(b.github))
     : [...rows].sort((a, b) => a.term.localeCompare(b.term))
 
-  const first = direction === 'github' ? 'GitHub says' : 'Plainly says'
-  const second = direction === 'github' ? 'Plainly says' : 'GitHub says'
+  const first = direction === 'github' ? 'GitHub says' : 'Yourkly says'
+  const second = direction === 'github' ? 'Yourkly says' : 'GitHub says'
 
   return (
     <section className="help-section">
       <h2 className="help-section-title">Plain-English glossary</h2>
       <p className="help-section-intro">
-        The word Plainly uses, and the GitHub word it replaces. Both mean the same thing —
+        The word Yourkly uses, and the GitHub word it replaces. Both mean the same thing —
         one of them is just easier to read.
       </p>
 
@@ -60,14 +60,14 @@ export default function Glossary() {
             onClick={() => setDirection('plain')}
             aria-pressed={direction === 'plain'}
           >
-            Plainly → GitHub
+            Yourkly → GitHub
           </button>
           <button
             className={`help-toggle-btn${direction === 'github' ? ' help-toggle-btn--on' : ''}`}
             onClick={() => setDirection('github')}
             aria-pressed={direction === 'github'}
           >
-            GitHub → Plainly
+            GitHub → Yourkly
           </button>
         </div>
       </div>
@@ -105,7 +105,7 @@ export default function Glossary() {
       )}
 
       <p className="help-gloss-foot">
-        Plainly only shows GitHub's words as grey explanation, never on a button. If you
+        Yourkly only shows GitHub's words as grey explanation, never on a button. If you
         would rather see them everywhere, turn on <strong>Show technical GitHub words</strong>{' '}
         in Account.
       </p>

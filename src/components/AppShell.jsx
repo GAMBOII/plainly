@@ -87,7 +87,7 @@ export default function AppShell({ auth, children }) {
       </div>
 
       {/* ── Sidebar ─────────────────────────────────────────────────── */}
-      <nav id="plainly-nav" className="shell-sidebar" aria-label="Main navigation">
+      <nav id="yourkly-nav" className="shell-sidebar" aria-label="Main navigation">
         {/* Wordmark */}
         <Link to="/" className="shell-wordmark" aria-label="Yourkly home">
           <span className="shell-brand-lockup">

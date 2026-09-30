@@ -209,7 +209,7 @@ export default function ReviewAndSave({ auth }) {
               <span>
                 <span className="save-conflict-choice-name">Keep their version</span>
                 <span className="save-conflict-choice-body">
-                  Throws away the edits you made on this computer. Plainly will ask you to confirm.
+                  Throws away the edits you made on this computer. Yourkly will ask you to confirm.
                 </span>
               </span>
               <span aria-hidden="true">›</span>

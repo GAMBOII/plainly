@@ -195,7 +195,7 @@ git push origin main
 - [ ] Product: Features approved
 - [ ] Deploy: Run `vercel --prod` or trigger via GitHub
 - [ ] Monitor: Watch logs for 24 hours
-- [ ] Celebration: 🎉 Plainly v2 is live!
+- [ ] Celebration: 🎉 Yourkly v2 is live!
 
 ---
 

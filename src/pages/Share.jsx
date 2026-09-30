@@ -106,7 +106,7 @@ export default function Share({ auth }) {
       <Link to={`/p/${owner}/${repo}`} className="back-link">← {projectName(repo)}</Link>
       <h1 className="share-title">Who can see it</h1>
       <p className="share-intro">
-        Pick a setting and Plainly tells you exactly what it means — in normal words, before
+        Pick a setting and Yourkly tells you exactly what it means — in normal words, before
         anything changes.
       </p>
 
@@ -202,7 +202,7 @@ export default function Share({ auth }) {
               : 'Safest choice — they can look but not touch.'}
           </div>
           <div className="share-invite-note">
-            They'll get an email from GitHub. Nothing is shared until they accept. Plainly opens
+            They'll get an email from GitHub. Nothing is shared until they accept. Yourkly opens
             GitHub's invite page for this — it does not send invitations itself.
           </div>
         </section>
@@ -226,7 +226,7 @@ export default function Share({ auth }) {
             : confirmPublic
               ? 'This makes every past Save Point readable by anyone.'
               : choice === 'link'
-                ? 'Plainly will ask you to confirm once more.'
+                ? 'Yourkly will ask you to confirm once more.'
                 : 'You can change this back any time.'}
         </span>
       </div>

@@ -3,7 +3,7 @@
  *
  * Two lists, and the difference between them is the point.
  *
- * An **update** is something Plainly followed from beginning to end: you
+ * An **update** is something Yourkly followed from beginning to end: you
  * described it, it went to an AI, changes came back, you reviewed and saved.
  * A **Save Point** is something GitHub recorded, however it got there.
  *
@@ -55,7 +55,7 @@ export default function Updates({ auth }) {
         </div>
 
         <p className="updates-intro-text">
-          An update is one thing you want to change, described in your words. Plainly keeps track
+          An update is one thing you want to change, described in your words. Yourkly keeps track
           of what it touched, which AI worked on it, and whether it's saved.{' '}
           {inProgressCount} {inProgressCount === 1 ? 'update' : 'updates'} in progress.
         </p>
@@ -63,7 +63,7 @@ export default function Updates({ auth }) {
         {updates.length === 0 && (
           <div className="updates-empty">
             <p>
-              No updates yet — nothing has been followed start to finish inside Plainly. Work
+              No updates yet — nothing has been followed start to finish inside Yourkly. Work
               already saved to GitHub is below.
             </p>
             <Link to={`/p/${owner}/${repo}/new-update`} className="pl-btn-primary">
@@ -106,7 +106,7 @@ export default function Updates({ auth }) {
         <div className="section-label updates-saved-label">Saved to GitHub</div>
         <p className="updates-saved-intro">
           Every change already saved in this project, newest first — including work done outside
-          Plainly.
+          Yourkly.
         </p>
 
         {loadingSaved && <p className="state-loading">Getting your Save Points from GitHub…</p>}

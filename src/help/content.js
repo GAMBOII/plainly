@@ -5,7 +5,7 @@
  * the search index has one place to read from. The wording is the wording that
  * was already in Help.jsx; this file restructures it, it doesn't rewrite it.
  *
- * Rule for anything added here: it must describe what Plainly actually does.
+ * Rule for anything added here: it must describe what Yourkly actually does.
  * No feature is promised in Help that the app doesn't have (DESIGN.md §8).
  */
 
@@ -41,7 +41,7 @@ export const ENTRY_CARDS = [
   },
 ]
 
-// ── How Plainly works — the four steps (HANDOFF §7.20) ────────────────────────
+// ── How Yourkly works — the four steps (HANDOFF §7.20) ────────────────────────
 export const STEPS = [
   {
     title: 'Sign in with GitHub',
@@ -81,7 +81,7 @@ export const STEPS = [
   },
 ]
 
-// ── Glossary — the Plainly word first, the GitHub word beside it ──────────────
+// ── Glossary — the Yourkly word first, the GitHub word beside it ──────────────
 export const GLOSSARY = [
   { term: 'Project',                    github: 'repository',            def: 'One place for all the files that belong together — an app, a book, a client job.' },
   { term: 'Save Point',                 github: 'commit',                def: 'A snapshot of your work at a moment in time. Kept forever, and you can always go back to it.' },
@@ -168,7 +168,7 @@ export const GOALS = [
 ]
 
 // ── When something looks wrong ────────────────────────────────────────────────
-// Every answer here describes real Plainly behaviour. If one stops being true,
+// Every answer here describes real Yourkly behaviour. If one stops being true,
 // fix the app or fix the answer — do not leave both.
 export const TROUBLESHOOTING = [
   {
@@ -228,7 +228,7 @@ export const TROUBLESHOOTING = [
 ]
 
 // ── The browser extension ─────────────────────────────────────────────────────
-// Plainly's sibling: github.com/Naylahknee/plainly-extension. This app explains
+// Yourkly's sibling: github.com/Naylahknee/yourkly-extension. This app explains
 // your own projects; the extension explains the technical web while you browse
 // it — GitHub included, but also Vercel, Netlify, Stripe and others.
 //
@@ -236,7 +236,7 @@ export const TROUBLESHOOTING = [
 // not in the Chrome Web Store yet, so the install is Developer mode + Load
 // unpacked, and this says so rather than implying a one-click install.
 export const EXTENSION = {
-  url: 'https://github.com/Naylahknee/plainly-extension',
+  url: 'https://github.com/Naylahknee/yourkly-extension',
   name: 'Yourk for your browser',
   tagline: 'Like Google Translate, but for tech jargon.',
   body: 'A Chrome extension that explains technical words on the sites themselves — GitHub, Vercel, Netlify, Stripe and more. Hover a term for a plain-English tooltip, or open the side panel for what a page is asking you to do.',
@@ -249,10 +249,10 @@ export const EXTENSION = {
 }
 
 // ── Contact ───────────────────────────────────────────────────────────────────
-// A real destination. Plainly has no support desk, so this opens a GitHub issue
+// A real destination. Yourkly has no support desk, so this opens a GitHub issue
 // on the repository this app is built from — the place a report can actually be
 // read and answered. Never advertise a channel that nobody reads.
-export const CONTACT_REPO = 'Naylahknee/plainly'
+export const CONTACT_REPO = 'Naylahknee/yourkly'
 
 export function issueUrl({ kind, summary, section }) {
   const body = [

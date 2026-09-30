@@ -1,5 +1,5 @@
 /**
- * Smoke Tests — Plainly Redesign
+ * Smoke Tests — Yourkly Redesign
  * Quick verification that all 7 core workflows render without errors
  *
  * Run: node smoke-tests.js
@@ -32,7 +32,7 @@ function warn(name, details = '') {
   console.log(`⚠️  ${name}${details ? ': ' + details : ''}`);
 }
 
-console.log('🧪 Plainly Redesign Smoke Tests\n');
+console.log('🧪 Yourkly Redesign Smoke Tests\n');
 
 // ──────────────────────────────────────────────────────────────
 // 1. Build Verification

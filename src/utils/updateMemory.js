@@ -103,7 +103,7 @@ function migrateIfNeeded(owner, repo) {
         commitShaAtSend:  null,
       },
       story: [
-        { what: 'Migrated from earlier Plainly version', at: now },
+        { what: 'Migrated from earlier Yourkly version', at: now },
       ],
       createdAt:  t.createdAt || now,
       updatedAt:  t.updatedAt || now,

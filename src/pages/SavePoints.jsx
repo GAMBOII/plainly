@@ -51,7 +51,7 @@ export default function SavePoints({ auth }) {
     try {
       const details = await getCommitDetails(token, owner, repo, commit.sha)
       const files = (details.files || []).filter(f => f.status !== 'removed')
-      if (files.length === 0) throw new Error('That Save Point has no files Plainly can put back.')
+      if (files.length === 0) throw new Error('That Save Point has no files Yourkly can put back.')
 
       const message = `Went back to "${title}"`
       let lastSha = null
@@ -82,7 +82,7 @@ export default function SavePoints({ auth }) {
       <Link to={`/p/${owner}/${repo}`} className="back-link">← {projectName(repo)}</Link>
       <h1 className="points-title">Restore an earlier version</h1>
       <p className="points-intro">
-        Pick the Save Point you want to go back to. Plainly puts those files back and saves that
+        Pick the Save Point you want to go back to. Yourkly puts those files back and saves that
         as a new Save Point — so nothing newer is ever lost.
       </p>
 

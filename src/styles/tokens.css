@@ -1,4 +1,4 @@
-/* Plainly design tokens — new tokens added by the redesign.
+/* Yourkly design tokens — new tokens added by the redesign.
    Existing brand values (--purple, --ink, --canvas, etc.) remain in src/index.css. */
 
 :root {
@@ -3409,7 +3409,7 @@ a:hover { color: var(--purple-dark); }
 
 .help-next-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
 
-/* ---- How Plainly works: the stepper ---- */
+/* ---- How Yourkly works: the stepper ---- */
 .help-stepper {
   display: grid;
   grid-template-columns: 270px 1fr;
@@ -3632,7 +3632,7 @@ a:hover { color: var(--purple-dark); }
 }
 
 /* The GitHub connection state on Account. Deliberately plain text in --grey:
-   this is a fact Plainly asked GitHub for, not a status with a fixed colour
+   this is a fact Yourkly asked GitHub for, not a status with a fixed colour
    meaning, and green here would read as "saved in GitHub" (DESIGN.md §2). */
 .account-connection {
   margin-top: 14px;
@@ -3650,7 +3650,7 @@ a:hover { color: var(--purple-dark); }
 .settings-switch-row input:checked + .settings-switch::after { transform: translateX(20px); }
 .settings-switch-row input:focus-visible + .settings-switch { outline: 3px solid var(--lilac-border); outline-offset: 3px; }
 
-/* Recent Save Points where the current update would be, on a project Plainly
+/* Recent Save Points where the current update would be, on a project Yourkly
    has no update of its own for. Same card, different contents — these are
    GitHub's records, and the heading above them says so. */
 .project-recent-list { display: flex; flex-direction: column; gap: 16px; }
@@ -3673,7 +3673,7 @@ a:hover { color: var(--purple-dark); }
 .updates-saved-empty { font: 400 15px/1.6 var(--font); color: var(--grey); }
 .updates-saved-all { display: inline-block; margin-top: 16px; }
 
-/* Plainly's browser extension, offered from Help. An outbound link to a
+/* Yourkly's browser extension, offered from Help. An outbound link to a
    separate product, so it reads as an offer rather than as another screen. */
 .help-extension-card {
   margin-top: 18px;
@@ -4031,7 +4031,7 @@ a:hover { color: var(--purple-dark); }
     text-decoration: none;
     color: var(--grey);
   }
-  /* Purple means "this is the thing" everywhere else in Plainly, so it means
+  /* Purple means "this is the thing" everywhere else in Yourkly, so it means
      "this is where you are" here too (DESIGN.md §2). */
   .tab--on { color: var(--purple); }
   .tab-icon { display: block; }
@@ -4191,18 +4191,18 @@ a:hover { color: var(--purple-dark); }
 .settings-visibility-help { margin-top: 12px; }
 .loading-skeleton { display: grid; gap: 10px; }
 .loading-skeleton__row { position: relative; overflow: hidden; display: grid; gap: 9px; padding: 18px 20px; background: #fff; border: 1px solid var(--grey-light); border-radius: var(--radius-card); }
-.loading-skeleton__row::after { content: ''; position: absolute; inset: 0; transform: translateX(-100%); background: linear-gradient(90deg, transparent, rgba(244, 242, 251, .88), transparent); animation: plainly-shimmer 1.2s ease-in-out infinite; }
+.loading-skeleton__row::after { content: ''; position: absolute; inset: 0; transform: translateX(-100%); background: linear-gradient(90deg, transparent, rgba(244, 242, 251, .88), transparent); animation: yourkly-shimmer 1.2s ease-in-out infinite; }
 .loading-skeleton__line { display: block; height: 12px; border-radius: 99px; background: var(--grey-light); }
 .loading-skeleton__line--title { width: 42%; height: 16px; }
 .loading-skeleton__line--body { width: 78%; }
 .loading-skeleton__line--meta { width: 30%; height: 10px; }
-@keyframes plainly-shimmer { to { transform: translateX(100%); } }
+@keyframes yourkly-shimmer { to { transform: translateX(100%); } }
 
 ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 380ms; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-::view-transition-old(root) { animation-name: plainly-page-out; }
-::view-transition-new(root) { animation-name: plainly-page-in; }
-@keyframes plainly-page-out { to { opacity: 0; transform: scale(.985); } }
-@keyframes plainly-page-in { from { opacity: 0; transform: scale(1.015); } }
+::view-transition-old(root) { animation-name: yourkly-page-out; }
+::view-transition-new(root) { animation-name: yourkly-page-in; }
+@keyframes yourkly-page-out { to { opacity: 0; transform: scale(.985); } }
+@keyframes yourkly-page-in { from { opacity: 0; transform: scale(1.015); } }
 
 .mobile-sheet-layer { position: fixed; z-index: 80; inset: 0; display: grid; align-items: end; }
 .mobile-sheet-backdrop { position: absolute; inset: 0; border: 0; background: rgba(28, 27, 34, .28); }
@@ -4218,9 +4218,9 @@ a:hover { color: var(--purple-dark); }
 @media (max-width: 720px) {
   .tab-icon { transition: transform 220ms cubic-bezier(.34, 1.5, .64, 1), opacity 160ms ease; }
   .tab--on .tab-icon { transform: scale(1.13); }
-  .tab--on .tab-label { animation: plainly-tab-label 220ms ease-out both; }
+  .tab--on .tab-label { animation: yourkly-tab-label 220ms ease-out both; }
 }
-@keyframes plainly-tab-label { from { opacity: .55; transform: translateY(2px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes yourkly-tab-label { from { opacity: .55; transform: translateY(2px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) {
   .loading-skeleton__row::after, .tab--on .tab-label, ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
   .mobile-sheet, .tab-icon { transition-duration: 1ms; }

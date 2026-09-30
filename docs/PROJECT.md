@@ -1,22 +1,22 @@
-# Plainly — Project Definition
+# Yourkly — Project Definition
 
 ## Core Definition
 
-**Plainly is GitHub translated into normal human language for nontechnical users.**
+**Yourkly is GitHub translated into normal human language for nontechnical users.**
 
 GitHub is the most reliable, free, and permanent system available for storing, versioning,
 and collaborating on text. Its weakness is that it was built by and for software engineers.
 Every concept — repositories, commits, branches, diffs, pull requests — is named in
 developer language and presented through a developer interface.
 
-Plainly removes that barrier. It exposes GitHub's power through plain words and simple
+Yourkly removes that barrier. It exposes GitHub's power through plain words and simple
 actions that any person can understand, regardless of their technical background.
 
 ---
 
-## Who Plainly Serves
+## Who Yourkly Serves
 
-Plainly is for people who need reliable version control for their writing or project work
+Yourkly is for people who need reliable version control for their writing or project work
 but have no software development background. This includes:
 
 - Writers working on long-form projects (books, essays, scripts) who need to track drafts
@@ -26,12 +26,12 @@ but have no software development background. This includes:
 - Students and researchers managing evolving documents over time
 - Anyone who has lost work because they could not navigate developer tools
 
-Plainly does not require the user to know what GitHub is, what a repository is, or what
+Yourkly does not require the user to know what GitHub is, what a repository is, or what
 a commit means. Those concepts exist in the background; the user sees only plain equivalents.
 
 ---
 
-## The Problem Plainly Solves
+## The Problem Yourkly Solves
 
 Version control is a solved problem in software engineering. For everyone else, it is not
 solved at all. Existing options fall into two categories:
@@ -44,7 +44,7 @@ solved at all. Existing options fall into two categories:
    limited, locked to specific platforms, and not designed for long-term archival or
    structured version management.
 
-Plainly occupies the gap: the full power of GitHub's versioning, storage, and collaboration
+Yourkly occupies the gap: the full power of GitHub's versioning, storage, and collaboration
 infrastructure, presented through an interface that any person can use on day one.
 
 ---
@@ -55,7 +55,7 @@ The following features are built and working in the current codebase.
 
 ### Authentication
 - Sign in with an existing GitHub account (OAuth)
-- No separate Plainly account or password required
+- No separate Yourkly account or password required
 - Session persisted in browser local storage
 
 ### Projects
@@ -107,7 +107,7 @@ The following features are built and working in the current codebase.
 
 ## Intended Expansion
 
-The current editor workflow is the first complete feature set within Plainly. The product
+The current editor workflow is the first complete feature set within Yourkly. The product
 is intended to grow into a complete plain-language interface for all the core things
 GitHub can do.
 
@@ -123,26 +123,26 @@ equivalent, without the user needing to configure anything.
 
 ### AI-Assisted Project Work
 Allowing users to pass file content to an AI assistant (Claude, ChatGPT, Gemini, or
-others) directly from within Plainly. The first version of this feature — working title
+others) directly from within Yourkly. The first version of this feature — working title
 "Continue with Another AI" — will copy a structured prompt containing the file's content
 and open the user's chosen AI tool in a new tab.
 
-This feature is one expansion of the existing Plainly workflow. It is not a separate
+This feature is one expansion of the existing Yourkly workflow. It is not a separate
 product.
 
 ### Broader GitHub Translation
-As GitHub adds or changes features, Plainly's roadmap includes translating more of those
+As GitHub adds or changes features, Yourkly's roadmap includes translating more of those
 capabilities into plain language: issues as task lists, pull requests as proposed changes
 for review, releases as published versions, and so on.
 
 ---
 
-## What Plainly Is Not
+## What Yourkly Is Not
 
-- Plainly is not a general-purpose note-taking app.
-- Plainly is not a replacement for Google Docs or Word.
-- Plainly is not a Git client for developers.
-- Plainly is not an AI product — AI assistance is one feature, not the core.
-- Plainly is not a content management system.
+- Yourkly is not a general-purpose note-taking app.
+- Yourkly is not a replacement for Google Docs or Word.
+- Yourkly is not a Git client for developers.
+- Yourkly is not an AI product — AI assistance is one feature, not the core.
+- Yourkly is not a content management system.
 
 The product is defined by its translation mission: GitHub's power, in plain language.

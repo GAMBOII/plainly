@@ -51,7 +51,7 @@ export async function getUser(token) {
  * No `affiliation` parameter, deliberately. GitHub's own default is
  * `owner,collaborator,organization_member`; this used to narrow it to `owner`,
  * which meant a project shared with you, or belonging to a team, had never
- * once appeared in Plainly.
+ * once appeared in Yourkly.
  *
  * Paged, because that change can turn four projects into several hundred. The
  * cap exists so a very large account can't hang the screen — and `truncated`

@@ -38,19 +38,19 @@
 .interactive-profile__social { width: 56px; height: 56px; border-radius: 50%; background: #222226; animation: interactive-social-in 400ms var(--ease) both; animation-delay: var(--social-delay); }
 .interactive-profile__social:hover { filter: brightness(1.28); }
 .interactive-profile button:focus-visible, .interactive-profile a:focus-visible, .interactive-profile__bio:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
-.interactive-profile--plainly { width: 100%; max-width: 660px; height: 80px; margin: 0 0 18px; background: #fff; border: 1px solid var(--grey-border, #D8D6E3); border-radius: var(--radius-card, 10px); color: var(--ink, #1C1B22); box-shadow: var(--shadow-card, 0 2px 16px rgba(108, 92, 231, .10)); }
-.interactive-profile--plainly.interactive-profile--profile { height: 96px; }
-.interactive-profile--plainly.interactive-profile--bio { height: 300px; border-radius: var(--radius-card, 10px); }
-.interactive-profile--plainly.interactive-profile--socials { height: 96px; }
-.interactive-profile--plainly .interactive-profile__image-button { border-color: var(--grey-border, #D8D6E3); }
-.interactive-profile--plainly .interactive-profile__button--green, .interactive-profile--plainly .interactive-profile__button--orange { background: var(--purple, #6C5CE7); }
-.interactive-profile--plainly .interactive-profile__button--blue { background: var(--ink, #1C1B22); }
-.interactive-profile--plainly .interactive-profile__identity p, .interactive-profile--plainly .interactive-profile__bio-head p { color: var(--grey, #8A8794); }
-.interactive-profile--plainly .interactive-profile__collapsed-copy span { color: var(--grey, #8A8794); }
-.interactive-profile--plainly .interactive-profile__identity h1, .interactive-profile--plainly .interactive-profile__bio-head h1 { color: var(--ink, #1C1B22); }
-.interactive-profile--plainly .interactive-profile__bio-copy { color: var(--ink-soft, #4A4753); }
-.interactive-profile--plainly .interactive-profile__back, .interactive-profile--plainly .interactive-profile__social { background: var(--grey-light, #ECEAF4); color: var(--ink, #1C1B22); }
-.interactive-profile--plainly button:focus-visible, .interactive-profile--plainly a:focus-visible, .interactive-profile--plainly .interactive-profile__bio:focus-visible { outline-color: var(--purple, #6C5CE7); }
+.interactive-profile--yourkly { width: 100%; max-width: 660px; height: 80px; margin: 0 0 18px; background: #fff; border: 1px solid var(--grey-border, #D8D6E3); border-radius: var(--radius-card, 10px); color: var(--ink, #1C1B22); box-shadow: var(--shadow-card, 0 2px 16px rgba(108, 92, 231, .10)); }
+.interactive-profile--yourkly.interactive-profile--profile { height: 96px; }
+.interactive-profile--yourkly.interactive-profile--bio { height: 300px; border-radius: var(--radius-card, 10px); }
+.interactive-profile--yourkly.interactive-profile--socials { height: 96px; }
+.interactive-profile--yourkly .interactive-profile__image-button { border-color: var(--grey-border, #D8D6E3); }
+.interactive-profile--yourkly .interactive-profile__button--green, .interactive-profile--yourkly .interactive-profile__button--orange { background: var(--purple, #6C5CE7); }
+.interactive-profile--yourkly .interactive-profile__button--blue { background: var(--ink, #1C1B22); }
+.interactive-profile--yourkly .interactive-profile__identity p, .interactive-profile--yourkly .interactive-profile__bio-head p { color: var(--grey, #8A8794); }
+.interactive-profile--yourkly .interactive-profile__collapsed-copy span { color: var(--grey, #8A8794); }
+.interactive-profile--yourkly .interactive-profile__identity h1, .interactive-profile--yourkly .interactive-profile__bio-head h1 { color: var(--ink, #1C1B22); }
+.interactive-profile--yourkly .interactive-profile__bio-copy { color: var(--ink-soft, #4A4753); }
+.interactive-profile--yourkly .interactive-profile__back, .interactive-profile--yourkly .interactive-profile__social { background: var(--grey-light, #ECEAF4); color: var(--ink, #1C1B22); }
+.interactive-profile--yourkly button:focus-visible, .interactive-profile--yourkly a:focus-visible, .interactive-profile--yourkly .interactive-profile__bio:focus-visible { outline-color: var(--purple, #6C5CE7); }
 @keyframes interactive-social-in { from { opacity: 0; transform: translateY(8px) scale(.84); } to { opacity: 1; transform: translateY(0) scale(1); } }
 @media (max-width: 470px) { .interactive-profile-page { padding: 14px; } .interactive-profile--profile { height: 88px; } .interactive-profile--bio { height: auto; min-height: 286px; } .interactive-profile__summary { gap: 9px; padding: 9px; } .interactive-profile__image-button { width: 58px; height: 58px; } .interactive-profile__actions { gap: 6px; } .interactive-profile__actions .interactive-profile__button { width: 47px; height: 47px; } .interactive-profile__bio { padding: 26px 24px; } .interactive-profile__socials { padding: 14px; gap: 14px; } .interactive-profile__social-list { gap: 7px; } .interactive-profile__social { width: 43px; height: 43px; } .interactive-profile__social svg { width: 19px; height: 19px; } }
 @media (prefers-reduced-motion: reduce) { .interactive-profile, .interactive-profile__content, .interactive-profile__button, .interactive-profile__back, .interactive-profile__social, .interactive-profile__image-button { transition-duration: 1ms; animation-duration: 1ms; animation-delay: 0ms; } }

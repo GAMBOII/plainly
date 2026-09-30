@@ -1,6 +1,6 @@
 # FIX FIRST — why the redesign isn't working
 
-**Repo:** `Naylahknee/plainly@main` (read at commit tree `64f423ae`)
+**Repo:** `Naylahknee/yourkly@main` (read at commit tree `64f423ae`)
 **Read this before touching `HANDOFF.md` again.**
 
 The last pass added support utilities (`projectMemory.js`, `taskMemory.js`, `aiPrompt.js`) and a `ProjectAIModal`. Those are useful. But the **structure** of the redesign was not built, so there is nothing for the design to live in. Fix these four things, in this order. Do not build any new screen until steps 1 and 2 are done — anything built before then will have to be thrown away.
@@ -101,7 +101,7 @@ Add these. Every one must resolve; a nav item pointing nowhere is worse than no 
 <Route path="/p/:repo/u/:updateId/review" element={<ReviewAIChanges/>} />
 ```
 
-The single most important line there is `/p/:repo` → **`ProjectHome`, not `Files`**. That one change is what turns Plainly from a file browser into what the design describes.
+The single most important line there is `/p/:repo` → **`ProjectHome`, not `Files`**. That one change is what turns Yourkly from a file browser into what the design describes.
 
 `ProjectTimeline.jsx` is close to the Updates list — repoint it at `/p/:repo/updates` and reshape it rather than starting over.
 
@@ -146,7 +146,7 @@ Stop adding screens to `Files.jsx` (already 40KB) and `Help.jsx` (25KB). Each sc
 
 ## Two smaller things worth fixing in the same pass
 
-**`useAuth.js` silently signs the user out on any `getUser` failure.** A routine expired token dumps them on the sign-in page with no explanation and no idea whether their work survived. Distinguish 401 from a network error, keep the token, and render the "Plainly needs you to sign in again" screen from §7.19 — the one that explicitly tells them nothing was lost.
+**`useAuth.js` silently signs the user out on any `getUser` failure.** A routine expired token dumps them on the sign-in page with no explanation and no idea whether their work survived. Distinguish 401 from a network error, keep the token, and render the "Yourkly needs you to sign in again" screen from §7.19 — the one that explicitly tells them nothing was lost.
 
 **`ProjectAIModal.jsx` is a modal.** Continue with AI is a full screen at `/p/:repo/u/:updateId/ai`. It has four numbered steps including an eight-item context checklist and a scrollable handoff preview; it does not fit in a modal, and more importantly a modal can't be linked to, which the "you left off here" flow depends on. Convert it — the prompt-building logic in `aiPrompt.js` is reusable, the container isn't.
 

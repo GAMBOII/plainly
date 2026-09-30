@@ -4,7 +4,7 @@
  * One question, in the user's words. No file picker, no technical step
  * (HANDOFF §7.6).
  *
- * "Likely area involved" never guesses. Unless Plainly has a real signal it
+ * "Likely area involved" never guesses. Unless Yourkly has a real signal it
  * says so plainly and lets the AI find the file.
  */
 

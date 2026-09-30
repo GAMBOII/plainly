@@ -2,7 +2,7 @@
  * help/Troubleshooting.jsx — /help/troubleshooting
  *
  * The six things that look broken and usually aren't. Each answer describes
- * what Plainly actually does — where an answer is "Plainly can't do that",
+ * what Yourkly actually does — where an answer is "Yourkly can't do that",
  * it says so rather than inventing a fix.
  */
 
@@ -24,7 +24,7 @@ export default function Troubleshooting() {
     <section className="help-section">
       <h2 className="help-section-title">When something looks wrong</h2>
       <p className="help-section-intro">
-        Most of these are Plainly working as intended. Open the one that matches.
+        Most of these are Yourkly working as intended. Open the one that matches.
       </p>
 
       <div className="help-trouble-list">

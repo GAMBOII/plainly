@@ -157,7 +157,7 @@ export default function Settings({ auth }) {
         <div className="settings-label settings-label--danger">Delete this project</div>
         <div className="settings-body">
           This deletes the repository and every Save Point in it from GitHub. It cannot be undone,
-          and Plainly will ask you to type the project name first.
+          and Yourkly will ask you to type the project name first.
         </div>
         <label className="settings-hint" htmlFor="p-confirm">
           Type <strong>{repo}</strong> to confirm.

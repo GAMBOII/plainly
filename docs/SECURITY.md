@@ -1,4 +1,4 @@
-# Plainly — Security Notes
+# Yourkly — Security Notes
 
 This document records known security concerns in the current implementation, the existing
 mitigations, and the preferred future direction for each issue. It is updated as the
@@ -45,7 +45,7 @@ Once set, it persists indefinitely across browser sessions and tabs until explic
 cleared. A stolen token remains valid until the user revokes it on GitHub or the OAuth
 App is deleted.
 
-**No server-side revocation:** Plainly has no mechanism to invalidate or rotate the
+**No server-side revocation:** Yourkly has no mechanism to invalidate or rotate the
 stored token. Signing out removes the item from `localStorage` in the current browser,
 but does not call GitHub's token-revocation endpoint. If the token was already copied,
 sign-out provides no protection.
@@ -113,7 +113,7 @@ and a migration path for connected users.
 containing raw HTML tags, `javascript:` href values, or event handler attributes
 would be inserted into the DOM verbatim and could execute in the user's browser.
 
-Because Plainly users write their own content, the direct impact is self-inflicted
+Because Yourkly users write their own content, the direct impact is self-inflicted
 (the user cannot attack other users this way with the current single-user model).
 However, the vulnerability represents bad practice and would become a real
 cross-user risk if any collaboration or shared-file feature were added.
@@ -154,14 +154,14 @@ const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&
 ```
 
 The `repo` scope grants full access to all of a user's repositories (public and private),
-including settings, webhooks, deploy keys, and deletion. Plainly only needs to read and
+including settings, webhooks, deploy keys, and deletion. Yourkly only needs to read and
 write file contents and repository metadata for repositories it creates.
 
 ### Preferred Future Direction
 
 Use the minimum scope sufficient for the product's operations:
 
-- For users who only need to work with Plainly-created repositories: `public_repo`
+- For users who only need to work with Yourkly-created repositories: `public_repo`
   if repositories are public, or a GitHub Fine-Grained Personal Access Token scoped
   to specific repositories.
 - For the current private-by-default repository model, a custom OAuth scope narrowing
@@ -186,7 +186,7 @@ Use the minimum scope sufficient for the product's operations:
 body: JSON.stringify({ name, auto_init: true, private: false })
 ```
 
-A user who created a new Plainly project without realizing the implications would
+A user who created a new Yourkly project without realizing the implications would
 have their writing published publicly on GitHub under their own account.
 
 ### Fix Applied

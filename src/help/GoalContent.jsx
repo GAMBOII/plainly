@@ -50,9 +50,9 @@ const GOAL_CONTENT = {
         <div className="help-callout">
           <p className="help-callout-label">The five things beginners need to know</p>
           <ol className="help-five">
-            <li>Your project is stored in a repository — Plainly calls it a <strong>Project</strong>.</li>
+            <li>Your project is stored in a repository — Yourkly calls it a <strong>Project</strong>.</li>
             <li>GitHub keeps a history of every change you save.</li>
-            <li>A saved change is called a commit — Plainly calls it a <strong>Save Point</strong>.</li>
+            <li>A saved change is called a commit — Yourkly calls it a <strong>Save Point</strong>.</li>
             <li>Private projects are not visible to anyone you have not invited.</li>
             <li>You can always open GitHub directly for advanced controls.</li>
           </ol>
@@ -70,7 +70,7 @@ const GOAL_CONTENT = {
       <>
         <p className="help-lead">
           Every time you want to keep a version of your work, create a Save Point.
-          Plainly saves it to GitHub for you — you do not need to push, commit,
+          Yourkly saves it to GitHub for you — you do not need to push, commit,
           or use a terminal.
         </p>
         <Steps id="save-ai-work" />
@@ -115,7 +115,7 @@ const GOAL_CONTENT = {
             <h4>Share with an AI tool</h4>
             <p>
               AI tools may need a GitHub connection, a project link, selected files,
-              or a prompt containing project context. Plainly helps you prepare that
+              or a prompt containing project context. Yourkly helps you prepare that
               context so you do not have to figure out which files or technical
               instructions the AI needs.
             </p>
@@ -151,22 +151,22 @@ const GOAL_CONTENT = {
     body: (
       <>
         <p className="help-lead">
-          Plainly prepares your entire project context — not just a single file — so
+          Yourkly prepares your entire project context — not just a single file — so
           any AI tool can pick up exactly where you left off.
         </p>
         <Steps id="handoff-ai" />
         <div className="help-callout">
           <p>
-            <strong>What is included in the handoff?</strong> Plainly bundles the
+            <strong>What is included in the handoff?</strong> Yourkly bundles the
             project name, description, file list, your recent Save Points, your
             project instructions, what you asked for, and how you want the AI to
             report back. You can leave any of it out before you copy it.
           </p>
         </div>
         <div className="help-section-block">
-          <h4>Why use Plainly for AI handoffs?</h4>
+          <h4>Why use Yourkly for AI handoffs?</h4>
           <p>
-            Each AI tool only knows what happened inside its own conversation. Plainly
+            Each AI tool only knows what happened inside its own conversation. Yourkly
             is the one place that holds the full story: what you asked each AI to do,
             which files changed, and what is still unfinished. That means you can switch
             between Claude, ChatGPT, Gemini, Manus or DeepSeek without losing context.
@@ -223,8 +223,8 @@ const GOAL_CONTENT = {
         <div className="help-callout">
           <p>
             <strong>What if I never created a Save Point?</strong> Then the earlier
-            version was never kept, and Plainly cannot bring it back. This is the whole
-            reason for saving regularly — and why Plainly keeps telling you when
+            version was never kept, and Yourkly cannot bring it back. This is the whole
+            reason for saving regularly — and why Yourkly keeps telling you when
             something is only on this computer.
           </p>
         </div>
@@ -243,8 +243,8 @@ const GOAL_CONTENT = {
         </p>
         <div className="help-callout">
           <p>
-            <strong>Plainly can publish for you.</strong> Open a project and choose
-            <strong> Put it on the web</strong>. Plainly asks GitHub to publish it and
+            <strong>Yourkly can publish for you.</strong> Open a project and choose
+            <strong> Put it on the web</strong>. Yourkly asks GitHub to publish it and
             shows you the address once GitHub says it's live — it never claims a site
             is up before that. For anything fancier, Vercel, Netlify and Cloudflare
             Pages all connect to the same GitHub project.
@@ -253,10 +253,10 @@ const GOAL_CONTENT = {
         <div className="help-section-block">
           <h4>The basic concept</h4>
           <p>
-            When you create a Save Point in Plainly, the change is stored in GitHub.
+            When you create a Save Point in Yourkly, the change is stored in GitHub.
             If a hosting service is connected, it notices that change and rebuilds
             your published site within a minute or two. Nothing extra is needed —
-            saving in Plainly is what triggers it.
+            saving in Yourkly is what triggers it.
           </p>
         </div>
       </>
@@ -272,7 +272,7 @@ const GOAL_CONTENT = {
         </p>
         <div className="help-link-types">
           {[
-            { pattern: 'github.com/username/project-name', what: 'A project (repository). You can view it if it is public or if you have been invited.', action: 'Open it in Plainly to read and edit, or view it directly on GitHub.' },
+            { pattern: 'github.com/username/project-name', what: 'A project (repository). You can view it if it is public or if you have been invited.', action: 'Open it in Yourkly to read and edit, or view it directly on GitHub.' },
             { pattern: 'github.com/username/project-name/issues/123', what: 'A task or problem that someone filed.', action: 'Read the discussion and add a comment if you have access.' },
             { pattern: 'github.com/username/project-name/pull/45', what: 'A proposed set of changes waiting for review.', action: 'Review the changes and approve or comment.' },
             { pattern: 'github.com/username/project-name/tree/branch-name', what: 'A specific separate version (branch) of the project.', action: 'You are looking at a version that may be different from the main project.' },

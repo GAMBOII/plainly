@@ -1,7 +1,7 @@
 /**
  * Account.jsx — /account  (max-width 660px)
  *
- * Who you're signed in as, what Plainly is allowed to do, and the one setting
+ * Who you're signed in as, what Yourkly is allowed to do, and the one setting
  * (HANDOFF §7.19). Sign out lives here — it is the only way out of the app,
  * and the design's sidebar has no room for it.
  *
@@ -44,7 +44,7 @@ export default function Account({ auth }) {
   async function handleSignOut() {
     setSigningOut(true)
     const { revoked } = await signOut()
-    // You're signed out either way. If GitHub still lists Plainly, the Welcome
+    // You're signed out either way. If GitHub still lists Yourkly, the Welcome
     // screen says so and points at where to remove it.
     navigate(revoked ? '/' : '/?disconnect_failed=1', { replace: true })
   }
@@ -55,7 +55,7 @@ export default function Account({ auth }) {
 
       <InteractiveProfile
         embedded
-        variant="plainly"
+        variant="yourkly"
         profile={{
           name: user?.name || user?.login || 'Your profile',
           username: user?.login,

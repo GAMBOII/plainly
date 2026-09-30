@@ -5,7 +5,7 @@
  * public count; your own is a toggle.
  *
  * Three states, not two. Whether *you* have starred it is a separate request,
- * and until it answers Plainly doesn't know — so the button says "Star" with
+ * and until it answers Yourkly doesn't know — so the button says "Star" with
  * nothing filled in rather than guessing, and if the check fails it stays
  * honest instead of showing an empty star that might be wrong.
  */
@@ -46,7 +46,7 @@ export default function StarButton({ auth, owner, repo, count }) {
       onClick={toggle}
       disabled={working || starred === null}
       aria-pressed={starred === true}
-      title={starred === null ? "Plainly hasn't checked whether you've starred this yet" : undefined}
+      title={starred === null ? "Yourkly hasn't checked whether you've starred this yet" : undefined}
     >
       <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"
            fill={starred ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.8"

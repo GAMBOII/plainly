@@ -6,7 +6,7 @@
  * Events come from utils/activity: files you opened, Save Points you made,
  * handoffs you sent, steps in an update's story, and the Save Points GitHub
  * reports. Nothing is inferred, so an empty list means nothing has happened
- * yet — not that Plainly forgot.
+ * yet — not that Yourkly forgot.
  */
 
 import { useEffect, useState } from 'react'
@@ -24,7 +24,7 @@ export default function Activity({ auth }) {
   const { projects: repos, loading } = useProjects(auth)
   const [commitsByRepo, setCommitsByRepo] = useState({})
 
-  // Real Save Points from GitHub, alongside what Plainly recorded itself.
+  // Real Save Points from GitHub, alongside what Yourkly recorded itself.
   useEffect(() => {
     if (!token || !owner || repos.length === 0) return
     let cancelled = false

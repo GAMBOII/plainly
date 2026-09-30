@@ -2,7 +2,7 @@
  * help/GettingStarted.jsx — /help
  *
  * The way in. Three cards for the three reasons people open Help, then the
- * shortest possible statement of what Plainly is.
+ * shortest possible statement of what Yourkly is.
  */
 
 import { Link } from 'react-router-dom'
@@ -42,7 +42,7 @@ export default function GettingStarted() {
         </div>
       </section>
 
-      {/* Plainly's sibling. This app explains your projects; the extension
+      {/* Yourkly's sibling. This app explains your projects; the extension
           explains the rest of the technical web while you're on it. */}
       <section className="help-section">
         <h2 className="help-section-title">{EXTENSION.name}</h2>

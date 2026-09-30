@@ -1,4 +1,4 @@
-# Plainly — Design System
+# Yourkly — Design System
 
 This document describes only the design system that can be verified from the existing
 source code. It does not invent conventions or describe intended future states as current.
@@ -10,7 +10,7 @@ from the existing page components.
 
 ## Design Philosophy
 
-Plainly's interface is deliberately minimal. The goal is to make GitHub-backed operations
+Yourkly's interface is deliberately minimal. The goal is to make GitHub-backed operations
 feel like ordinary document management. The visual language avoids technical aesthetics
 (no code fonts in primary UI, no developer-tool chrome) and uses plain English for every
 visible label.
@@ -243,7 +243,7 @@ sidebar, editor toolbar, and footer:
 The following are verified examples where GitHub concepts are translated into plain
 language in the existing interface.
 
-| Context | GitHub / technical term | Plainly UI wording |
+| Context | GitHub / technical term | Yourkly UI wording |
 |---|---|---|
 | `Projects.jsx` — page title, card label | Repository | Project |
 | `Files.jsx` — save button | Commit | Save point |

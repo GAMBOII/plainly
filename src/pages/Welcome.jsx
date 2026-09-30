@@ -247,7 +247,7 @@ export default function Welcome() {
 
         <footer className="landing-footer">
           <span>© 2026 Yourkly</span>
-          <a href="https://github.com/Naylahknee/plainly/issues/new" target="_blank" rel="noopener noreferrer">Support</a>
+          <a href="https://github.com/Naylahknee/yourkly/issues/new" target="_blank" rel="noopener noreferrer">Support</a>
         </footer>
       </div>
     </div>
