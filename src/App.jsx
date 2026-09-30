@@ -146,9 +146,11 @@ export default function App() {
         {/* ── Auth (no shell) ─────────────────────────────────────── */}
         <Route path="/auth/callback" element={<AuthCallback />} />
         <Route path="/profile-preview" element={<ProfilePreview auth={auth} />} />
-        <Route path="/native/new" element={<NativeNewProject />} />
-        <Route path="/native/projects" element={<NativeProjects />} />
-        <Route path="/native/p/:id" element={<NativeProjectHome />} />
+
+        {/* ── Native: no GitHub, same shell ─────────────────────────── */}
+        <Route path="/native/new" element={<AppShell auth={auth} native><NativeNewProject /></AppShell>} />
+        <Route path="/native/projects" element={<AppShell auth={auth} native><NativeProjects /></AppShell>} />
+        <Route path="/native/p/:id" element={<AppShell auth={auth} native><NativeProjectHome /></AppShell>} />
 
         {/* ── Root ───────────────────────────────────────────────── */}
         <Route
@@ -167,12 +169,16 @@ export default function App() {
         <Route path="/account"   element={<Protected auth={auth}><Account   auth={auth} /></Protected>} />
         <Route path="/new"       element={<Protected auth={auth}><NewProject auth={auth} /></Protected>} />
         {/* Help is a section: one page, six routes, so every topic is linkable. */}
-        <Route path="/help"                 element={<Protected auth={auth}><Help auth={auth} /></Protected>} />
-        <Route path="/help/how-it-works"    element={<Protected auth={auth}><Help auth={auth} /></Protected>} />
-        <Route path="/help/tasks"           element={<Protected auth={auth}><Help auth={auth} /></Protected>} />
-        <Route path="/help/glossary"        element={<Protected auth={auth}><Help auth={auth} /></Protected>} />
-        <Route path="/help/troubleshooting" element={<Protected auth={auth}><Help auth={auth} /></Protected>} />
-        <Route path="/help/contact"         element={<Protected auth={auth}><Help auth={auth} /></Protected>} />
+        {/* Help is readable by everyone: native (no-GitHub) users get the same
+            shell, and the shell's Help link must work for them. Help takes no
+            auth-dependent props. The shell adapts: GitHub users get GitHub
+            nav, everyone else gets the native destinations. */}
+        <Route path="/help"                 element={<AppShell auth={auth} native={!auth.token}><Help auth={auth} /></AppShell>} />
+        <Route path="/help/how-it-works"    element={<AppShell auth={auth} native={!auth.token}><Help auth={auth} /></AppShell>} />
+        <Route path="/help/tasks"           element={<AppShell auth={auth} native={!auth.token}><Help auth={auth} /></AppShell>} />
+        <Route path="/help/glossary"        element={<AppShell auth={auth} native={!auth.token}><Help auth={auth} /></AppShell>} />
+        <Route path="/help/troubleshooting" element={<AppShell auth={auth} native={!auth.token}><Help auth={auth} /></AppShell>} />
+        <Route path="/help/contact"         element={<AppShell auth={auth} native={!auth.token}><Help auth={auth} /></AppShell>} />
 
         {/* ── Everything about a project ──────────────────────────── */}
         <Route path="/p/*" element={<ProjectArea auth={auth} />} />

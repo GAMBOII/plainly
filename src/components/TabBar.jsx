@@ -45,10 +45,22 @@ const TABS = [
     d: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18M9.5 9.2A2.6 2.6 0 0 1 14.5 10c0 1.7-2.5 2-2.5 3.6M12 17h.01' },
 ]
 
-export default function TabBar() {
+// Native (no-GitHub) users get the same bar with destinations that exist for
+// them. Timeline and the account avatar are GitHub-only.
+const TABS_NATIVE = [
+  { to: '/native/projects', end: true, label: 'Home',
+    d: 'M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z' },
+  { to: '/native/new',                  label: 'New',
+    d: 'M12 5v14M5 12h14' },
+  { to: '/help',                        label: 'Help',
+    d: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18M9.5 9.2A2.6 2.6 0 0 1 14.5 10c0 1.7-2.5 2-2.5 3.6M12 17h.01' },
+]
+
+export default function TabBar({ native }) {
+  const tabs = native ? TABS_NATIVE : TABS
   return (
     <nav className="tabbar" aria-label="Sections">
-      {TABS.map(t => (
+      {tabs.map(t => (
         <NavLink
           key={t.to}
           to={t.to}

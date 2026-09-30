@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import NativeHeader from '../components/NativeHeader'
 import { createNativeProject,saveNativeFile } from '../utils/nativeProjectStore'
 import { PROJECT_TYPES,aboutContent,starterFiles,mitLicense } from '../utils/projectConfiguration'
 
@@ -18,7 +17,7 @@ export default function NativeNewProject(){
   starterFiles(projectType).forEach(f=>saveNativeFile(project.id,{name:f.path,content:f.content}))
   navigate(`/native/p/${project.id}`)
  }
- return <div className="welcome-page onboarding-page mobile-flow mobile-flow--native"><NativeHeader/><main className="onboarding-shell">
+ return <main className="onboarding-shell">
   <div className="onboarding-progress"><span>NEW PROJECT · {step} OF 2</span><i><b className={step===2?'onboarding-progress--two':''}/></i></div>
   {step===1?<><h1>Make your project</h1><p className="onboarding-lead">A project is simply the thing you're building. Give it a name you recognize and tell Yourkly, in your own words, what it is.</p><div className="translation-note"><strong>No technical description needed.</strong><span>“A website for my homeschool group” is enough. Yourkly uses this description to keep the rest of the workspace understandable.</span></div>
    <div className="newproject-form"><div><label className="newproject-label">What should it be called?</label><input className="newproject-input" value={name} onChange={e=>setName(e.target.value)} required autoFocus/></div><div><label className="newproject-label">What are you building?</label><input className="newproject-input" value={description} onChange={e=>setDescription(e.target.value)} placeholder="One sentence is enough"/></div><button className="landing-cta" disabled={!name.trim()} onClick={()=>setStep(2)}>Continue</button></div>
@@ -29,5 +28,5 @@ export default function NativeNewProject(){
    <label className="config-toggle"><span><strong>Ignore technical clutter</strong><small>Yourkly keeps temporary, secret, and generated files out of version history when applicable.</small></span><input type="checkbox" checked={ignoreTechnicalFiles} onChange={e=>setIgnore(e.target.checked)}/></label>
    <div><div className="newproject-label">How can other people use this project?</div><div className="newproject-hint">This is about reuse permission, not who can view the project. If you're unsure, leave it at “Don't give reuse permission.”</div><select className="newproject-input" value={usage} onChange={e=>setUsage(e.target.value)}><option value="private">Don't give reuse permission</option><option value="mit">Allow reuse with credit (MIT)</option></select></div>
    <button className="landing-cta" onClick={create}>Create project</button></div></>}
- </main></div>
+ </main>
 }

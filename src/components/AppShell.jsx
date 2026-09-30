@@ -4,6 +4,12 @@
  * App-level layout: 248px sticky left sidebar + scrollable content area.
  * Every signed-in route renders inside this shell.
  *
+ * The `native` prop switches the shell to the no-GitHub experience: the same
+ * sidebar, top bar, and tab bar, with destinations that exist for native
+ * users (Home is their project list; Recent Activity and Account are
+ * GitHub-only and hidden). The footer reads "Kept in this browser" instead
+ * of showing a GitHub identity.
+ *
  * Sidebar sections:
  *   - Wordmark + tagline
  *   - Global nav: Home · My Projects · Recent Activity · Account · Help
@@ -19,6 +25,7 @@
 
 import { NavLink, useParams, useLocation, Link, useNavigate } from 'react-router-dom'
 import { getActiveUpdate } from '../utils/updateMemory'
+import { nativeProject } from '../utils/nativeProjectStore'
 import { projectName } from '../utils/projectName'
 import { projectNavItems } from '../utils/projectNav'
 import { SECTIONS as HELP_SECTIONS } from '../help/content'
@@ -40,8 +47,8 @@ function NavItem({ to, label, end }) {
   )
 }
 
-export default function AppShell({ auth, children }) {
-  const { owner, repo } = useParams()
+export default function AppShell({ auth, children, native }) {
+  const { owner, repo, id } = useParams()
   const { pathname } = useLocation()
   const navigate = useNavigate()
   // If the :repo param is present, we're inside a project
@@ -49,13 +56,23 @@ export default function AppShell({ auth, children }) {
   // Help opens its own topic list, the same way a project opens its own nav.
   const inHelp = pathname === '/help' || pathname.startsWith('/help/')
   const isHome = pathname === '/'
-  const mobileTitle = inProject
-    ? projectName(repo)
-    : pathname.startsWith('/projects') ? 'Projects'
-      : pathname.startsWith('/activity') ? 'Timeline'
-        : pathname.startsWith('/help') ? 'Help'
-          : pathname.startsWith('/account') ? 'Account'
-            : 'yourkly'
+  const isNativeHome = pathname === '/native/projects'
+  // Native project name for the phone top bar. Guarded: the store reads
+  // localStorage, which can be blocked.
+  let nativeProjectName = null
+  if (native && id) {
+    try { nativeProjectName = nativeProject(id)?.name || null } catch { /* no project */ }
+  }
+  const mobileTitle = native && nativeProjectName ? nativeProjectName
+    : pathname === '/native/projects' ? 'Projects'
+      : pathname === '/native/new' ? 'New project'
+        : inProject
+          ? projectName(repo)
+          : pathname.startsWith('/projects') ? 'Projects'
+            : pathname.startsWith('/activity') ? 'Timeline'
+              : pathname.startsWith('/help') ? 'Help'
+                : pathname.startsWith('/account') ? 'Account'
+                  : 'yourkly'
 
   const user = auth?.user
   const avatarUrl = user?.avatar_url
@@ -68,7 +85,13 @@ export default function AppShell({ auth, children }) {
       {/* Phones only. Avatar to Account on the left, the way every phone app
           people already use puts an account there; add a project on the right. */}
       <div className="shell-mobilebar">
-        {isHome ? (
+        {native ? (
+          isNativeHome ? (
+            <span className="shell-mobilebar-spacer" aria-hidden="true" />
+          ) : (
+            <button className="shell-mobilebar-back" onClick={() => navigate(-1)} aria-label="Go back" type="button">‹</button>
+          )
+        ) : isHome ? (
           <Link to="/account" className="shell-mobilebar-avatar" aria-label="Account">
             {avatarUrl
               ? <img src={avatarUrl} alt="" width={34} height={34} />
@@ -77,19 +100,19 @@ export default function AppShell({ auth, children }) {
         ) : (
           <button className="shell-mobilebar-back" onClick={() => navigate(-1)} aria-label="Go back" type="button">‹</button>
         )}
-        <Link to={isHome ? '/' : pathname} className="shell-mobilebar-brand" aria-label={isHome ? 'Yourkly home' : mobileTitle}>
-          {isHome
+        <Link to={native ? '/native/projects' : isHome ? '/' : pathname} className="shell-mobilebar-brand" aria-label={isNativeHome || isHome ? 'Yourkly home' : mobileTitle}>
+          {isNativeHome || isHome
             ? <BrandWordmark className="brand-wordmark--mobile" />
             : <span className="shell-mobilebar-title">{mobileTitle}</span>}
-          {!isHome && <span className="shell-mobilebar-subtitle">Your work, made clear.</span>}
+          {!isNativeHome && !isHome && <span className="shell-mobilebar-subtitle">Your work, made clear.</span>}
         </Link>
-        <Link to="/new" className="shell-mobilebar-add" aria-label="Start a new project">+</Link>
+        <Link to={native ? '/native/new' : '/new'} className="shell-mobilebar-add" aria-label="Start a new project">+</Link>
       </div>
 
       {/* ── Sidebar ─────────────────────────────────────────────────── */}
       <nav id="yourkly-nav" className="shell-sidebar" aria-label="Main navigation">
         {/* Wordmark */}
-        <Link to="/" className="shell-wordmark" aria-label="Yourkly home">
+        <Link to={native ? '/native/projects' : '/'} className="shell-wordmark" aria-label="Yourkly home">
           <span className="shell-brand-lockup">
             <BrandWordmark className="brand-wordmark--sidebar" />
             <img className="shell-brand-stork" src={storkUrl} alt="" />
@@ -97,13 +120,26 @@ export default function AppShell({ auth, children }) {
           <span className="shell-tagline">Your work, made clear.</span>
         </Link>
 
-        {/* Global nav */}
+        {/* Global nav.
+            Native (no-GitHub) users get the same shell with destinations that
+            exist for them: Recent Activity and Account are GitHub-only, and
+            Home is their project list. */}
         <div className="shell-nav-group">
-          <NavItem to="/" end label="Home" />
-          <NavItem to="/projects" label="My Projects" />
-          <NavItem to="/activity" label="Recent Activity" />
-          <NavItem to="/account" label="Account" />
-          <NavItem to="/help" label="Help" />
+          {native ? (
+            <>
+              <NavItem to="/native/projects" end label="Home" />
+              <NavItem to="/native/new" label="New project" />
+              <NavItem to="/help" label="Help" />
+            </>
+          ) : (
+            <>
+              <NavItem to="/" end label="Home" />
+              <NavItem to="/projects" label="My Projects" />
+              <NavItem to="/activity" label="Recent Activity" />
+              <NavItem to="/account" label="Account" />
+              <NavItem to="/help" label="Help" />
+            </>
+          )}
         </div>
 
         {/* Help topics — only while you're in Help */}
@@ -132,19 +168,27 @@ export default function AppShell({ auth, children }) {
 
         {/* Sidebar footer */}
         <div className="shell-footer">
-          {avatarUrl && (
-            <img
-              src={avatarUrl}
-              alt={login ? `${login}'s avatar` : 'Your avatar'}
-              className="shell-avatar"
-              width={32}
-              height={32}
-            />
+          {native ? (
+            <div className="shell-footer-text">
+              <span className="shell-footer-status">Kept in this browser</span>
+            </div>
+          ) : (
+            <>
+              {avatarUrl && (
+                <img
+                  src={avatarUrl}
+                  alt={login ? `${login}'s avatar` : 'Your avatar'}
+                  className="shell-avatar"
+                  width={32}
+                  height={32}
+                />
+              )}
+              <div className="shell-footer-text">
+                {login && <span className="shell-footer-login">{login}</span>}
+                <span className="shell-footer-status">GitHub connected</span>
+              </div>
+            </>
           )}
-          <div className="shell-footer-text">
-            {login && <span className="shell-footer-login">{login}</span>}
-            <span className="shell-footer-status">GitHub connected</span>
-          </div>
         </div>
       </nav>
 
@@ -155,7 +199,7 @@ export default function AppShell({ auth, children }) {
 
       {/* Phones only. Hidden with display:none on a desktop, which takes it out
           of the accessibility tree too, so only one navigation is ever live. */}
-      <TabBar />
+      <TabBar native={native} />
     </div>
   )
 }
