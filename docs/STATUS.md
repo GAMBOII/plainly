@@ -5,6 +5,29 @@ every substantial task. See `AGENTS.md` for the update protocol.
 
 ---
 
+## Native "welcome back" fix — 2026-09-30
+
+Owner report: clicking "Continue with Yourkly" on the landing page dropped her
+into projects she made the previous week, with no login and no explanation —
+it felt like being signed into an account nobody signed into.
+
+Root cause: native projects live in the browser's local storage, so they
+persist across visits with no identity at all. The landing page never said
+that, and neither did the projects page. Not a session bug: the GitHub session
+cookie (`plainly_session`) expires after 8 hours and cannot restore a week-old
+login.
+
+- `src/pages/Welcome.jsx`: counts native projects in local storage; when at
+  least one exists, a line under the "Continue with Yourkly" button says
+  "Welcome back — you have N project(s) saved on this device."
+- `src/pages/NativeProjects.jsx`: added a line under the workspace heading —
+  "These live in this browser on this device, so there's no login — but they
+  won't follow you to another device unless you export them."
+- No route, auth, or storage changes. No new dependencies.
+- Validation: `npm run build` passed. Imports resolve; both edits re-read.
+- Status: implemented locally on `yourkly-rebrand`, not committed (owner has
+  not asked for a commit on this change yet).
+
 ## Native project setup spacing — 2026-09-25
 
 Published for review in PR #19 on `fix/native-project-spacing`, based on main `7eaecc2`.
@@ -368,3 +391,14 @@ The build is clean: **70 modules, 0 errors, 5.41s** (`npm run build`, 2025-07-12
 - The new-project form now keeps “My Projects” available in its header so users can return to their saved projects.
 - GitHub sign-in continues to use the existing OAuth flow and returns to the signed-in dashboard. Yourkly-only projects remain stored in the current browser on this device.
 - Validation: `npm run build` passed (119 modules, 0 errors). Vite reports the existing main JavaScript bundle just over its 500 kB advisory threshold.
+
+## Current Update (2026-09-30 — Native users get the same shell)
+
+- Owner report: after GitHub login the browser URL changes to plainly-lilac.vercel.app. Root cause found in code review: the authorize URL sent to GitHub carries no `redirect_uri`, so GitHub falls back to the Authorization callback URL registered on the OAuth app, which still points at the old Vercel deployment URL. There is no hardcoded deployment URL in the codebase; `AuthCallback.jsx` navigates relatively. Fix is a setting, not code: in GitHub Settings > Developer settings > OAuth Apps, change the app's Authorization callback URL to `https://yourkly.com/auth/callback`.
+- Owner requirement: anyone who signs up, GitHub or Yourkly-native, gets the same interface. Implemented:
+  - `AppShell` takes a `native` prop. Native mode keeps the sidebar, phone top bar, and tab bar, with destinations that exist for native users: Home (/native/projects), New project (/native/new), Help (/help). Recent Activity and Account are GitHub-only and hidden. The sidebar footer reads "Kept in this browser" instead of a GitHub identity. The phone top bar shows the native project name inside a project.
+  - `TabBar` takes a `native` prop with Home / New / Help tabs.
+  - The three native pages (`NativeNewProject`, `NativeProjects`, `NativeProjectHome`) dropped their bespoke landing headers and now render inside the shell. `NativeHeader.jsx` deleted (was only used by the new-project page, and its Home link pointed at `/`, which shows the landing page to logged-out users).
+  - All six `/help` routes are now public (Help uses no auth-dependent props) and wrapped in the shell, which adapts: GitHub users see GitHub nav, everyone else sees native destinations.
+- No routes added or removed. No dependency changes. Native storage behavior unchanged (browser localStorage, no login).
+- Validation: `npm run build` passed 2026-09-30. Changes staged, awaiting owner approval to commit/push.

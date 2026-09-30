@@ -1,6 +1,5 @@
 import { useMemo,useState } from 'react'
 import { Link,useParams,useNavigate } from 'react-router-dom'
-import BrandWordmark from '../components/BrandWordmark'
 import { nativeProject,nativeFiles,nativeVersions,saveNativeFile,deleteNativeFile,createNativeVersion,restoreNativeVersion,exportNativeProject,deleteNativeProject } from '../utils/nativeProjectStore'
 
 export default function NativeProjectHome(){
@@ -18,8 +17,7 @@ export default function NativeProjectHome(){
  function restore(v){if(!confirm(`Restore “${v.label}”? Your current files will be replaced.`))return;restoreNativeVersion(id,v.id);setFiles(nativeFiles(id));}
  function download(){const data=exportNativeProject(id),blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`${project.slug||'yourkly-project'}.yourkly.json`;a.click();URL.revokeObjectURL(url)}
  function removeProject(){if(!confirm(`Delete “${project.name}” from this device?`))return;deleteNativeProject(id);navigate('/native/projects')}
- return <div className="welcome-page"><div className="landing-shell">
-  <header className="landing-header"><BrandWordmark className="brand-wordmark--landing"/><Link className="pl-btn" to="/native/projects">Your Projects</Link></header>
+ return <>
   <main className="screen-padded project-screen native-workspace">
    <Link to="/native/projects" className="back-link">← Your Projects</Link>
    <div className="project-head"><div><div className="eyebrow">KEPT WITH YOURKLY</div><h1 className="project-title">{project.name}</h1>{project.description&&<p className="project-desc">{project.description}</p>}</div></div>
@@ -32,5 +30,5 @@ export default function NativeProjectHome(){
    {tab==='settings'&&<section className="project-update-card"><div className="eyebrow">ABOUT THIS PROJECT</div><h2>Project info</h2><p className="project-info-lead">This page explains what Yourkly is keeping for you and what the project controls mean.</p><div className="project-info-grid"><div><strong>Where your project is</strong><span>Right now, {project.name} is stored in this browser on this device. Yourkly has not uploaded it to GitHub.</span></div><div><strong>What a Save Point does</strong><span>It remembers the contents of your files at a moment in time, so you can return to that version later.</span></div><div><strong>What Export project does</strong><span>It downloads a complete Yourkly copy of the project so you can keep a backup or move it elsewhere.</span></div><div><strong>What Delete project does</strong><span>It removes this Yourkly project from this device. Export first if you may need it later.</span></div></div><div className="newproject-actions"><button className="pl-btn" onClick={download}>Export project</button><button className="pl-btn" onClick={removeProject}>Delete project</button></div></section>}
   </main>
   {editing&&<div className="native-editor-backdrop"><div className="native-editor"><div className="projects-heading-row"><h2>{files.some(f=>f.id===editing.id)?'Edit file':'New file'}</h2><button className="text-button" onClick={()=>setEditing(null)}>Close</button></div><label className="newproject-label">File name</label><input className="newproject-input" value={name} onChange={e=>setName(e.target.value)}/><label className="newproject-label">Contents</label><textarea className="native-editor-text" value={content} onChange={e=>setContent(e.target.value)} autoFocus/><div className="newproject-actions"><button className="pl-btn-primary" onClick={save}>Save file</button><button className="pl-btn" onClick={()=>setEditing(null)}>Cancel</button></div></div></div>}
- </div></div>
+ </>
 }

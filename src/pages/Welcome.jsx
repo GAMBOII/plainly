@@ -15,6 +15,7 @@ import { useEffect, useState } from 'react'
 import BrandWordmark from '../components/BrandWordmark'
 import storkUrl from '../assets/brand/yourkly-stork.png'
 import { useNavigate } from 'react-router-dom'
+import { nativeProjects } from '../utils/nativeProjectStore'
 
 export default function Welcome() {
   const navigate = useNavigate()
@@ -77,6 +78,13 @@ export default function Welcome() {
   const params = new URLSearchParams(window.location.search)
   const authError = params.get('auth_error')
   const disconnectFailed = params.get('disconnect_failed') === '1'
+
+  // Native projects live in this browser's local storage. If the person has
+  // been here before, say so on the landing page — otherwise the old projects
+  // appearing after "Continue with Yourkly" feels like being logged into an
+  // account nobody signed into.
+  let savedProjectCount = 0
+  try { savedProjectCount = nativeProjects().length } catch { /* storage may be blocked */ }
 
   if (onboarding === 'choose') {
     return (
@@ -164,6 +172,9 @@ export default function Welcome() {
               {missingConfig && <p className="error-box">Configuration missing — set <code>VITE_GITHUB_CLIENT_ID</code> to enable GitHub sign-in.</p>}
               <div className="landing-cta-stack">
                 <button type="button" className="landing-cta" onClick={() => chooseStart('yourkly')}>Continue with Yourkly</button>
+                {savedProjectCount > 0 && (
+                  <span>Welcome back — you have {savedProjectCount} {savedProjectCount === 1 ? 'project' : 'projects'} saved on this device.</span>
+                )}
                 <button type="button" onClick={startSignIn} className="pl-btn landing-secondary-cta" disabled={missingConfig || signingIn}>
                   {signingIn ? 'Opening GitHub…' : 'Connect GitHub'}
                 </button>
