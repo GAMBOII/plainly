@@ -4,7 +4,7 @@
  * Put a project on the web so anyone can open it in a browser. GitHub calls
  * this Pages.
  *
- * Help used to say outright that Plainly cannot publish for you. That sentence
+ * Help used to say outright that Yourkly cannot publish for you. That sentence
  * is now false, and has been rewritten — a promise in Help that the app can't
  * keep is the same category of problem as inventing a number.
  *
@@ -186,7 +186,7 @@ export default function Publish({ auth }) {
       {/* ── Couldn't tell ── */}
       {!loading && site === undefined && !error && (
         <p className="publish-note">
-          Plainly couldn't check whether this project is published, so it can't say either
+          Yourkly couldn't check whether this project is published, so it can't say either
           way.
         </p>
       )}

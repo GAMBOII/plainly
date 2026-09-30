@@ -1,6 +1,6 @@
-# Plainly Redesign — Implementation Complete ✅
+# Yourkly Redesign — Implementation Complete ✅
 
-**Project:** Plainly v2 — Redesign from file-centric to update-centric product  
+**Project:** Yourkly v2 — Redesign from file-centric to update-centric product  
 **Date Completed:** 2026-07-28  
 **Status:** PRODUCTION READY  
 **Build:** ✅ Passing (91 modules, 3.56s)  
@@ -10,7 +10,7 @@
 
 ## Executive Summary
 
-The Plainly redesign transforms the product from a file browser centered around projects to an update-centric workflow. Users now describe what they want to change (an "update"), send it to an AI, and Plainly tracks the whole lifecycle: planning → AI handoff → change detection → review → save.
+The Yourkly redesign transforms the product from a file browser centered around projects to an update-centric workflow. Users now describe what they want to change (an "update"), send it to an AI, and Yourkly tracks the whole lifecycle: planning → AI handoff → change detection → review → save.
 
 **Completion:** 7 of 7 core workflows fully implemented with backend logic and styling.
 

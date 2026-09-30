@@ -1,7 +1,7 @@
-# Plainly redesign — implementation handoff
+# Yourkly redesign — implementation handoff
 
-**For:** Bob / Claude Code / Codex working in `Naylahknee/plainly` (branch `main`)
-**Design source of truth:** `Plainly v2.dc.html` (prototype, in the design project — ask NaLonni for it if you don't have it)
+**For:** Bob / Claude Code / Codex working in `Naylahknee/yourkly` (branch `main`)
+**Design source of truth:** `Yourkly v2.dc.html` (prototype, in the design project — ask NaLonni for it if you don't have it)
 **Written:** 2026-07-28
 
 ---
@@ -11,7 +11,7 @@
 - Build **exactly** the screens, copy, states, and rules described here. Where this document gives literal copy, use that copy verbatim — the wording is the product.
 - **Do not** change anything not named in this document.
 - **Preserve** working GitHub OAuth (`src/hooks/useAuth.js`, `api/oauth/exchange.js`), repo access (`src/api/github.js`), file editing, DOMPurify sanitization, history/diff/restore.
-- **Do not** fabricate GitHub data. Every number, name, and timestamp on screen must come from a real API response or from Plainly's own stored memory. If a value is unavailable, show the honest fallback given below.
+- **Do not** fabricate GitHub data. Every number, name, and timestamp on screen must come from a real API response or from Yourkly's own stored memory. If a value is unavailable, show the honest fallback given below.
 - **Do not** add a chatbot. There is no in-app AI in this scope.
 - **Do not** commit, push, merge, or deploy. Leave the work for NaLonni to review.
 - Run `npm run build` before reporting. Report the result.
@@ -21,7 +21,7 @@
 
 ## 1. What this redesign changes, in one paragraph
 
-Today Plainly is a repo list that opens into a file editor. After this change, Plainly is organised around **updates** — one thing the user wants to change, in their own words. GitHub is still the storage. The app's job is to answer, every time it opens: where did I leave off, what happened since, what should I do next. The file browser stays, but it is no longer the centre of the product.
+Today Yourkly is a repo list that opens into a file editor. After this change, Yourkly is organised around **updates** — one thing the user wants to change, in their own words. GitHub is still the storage. The app's job is to answer, every time it opens: where did I leave off, what happened since, what should I do next. The file browser stays, but it is no longer the centre of the product.
 
 ---
 
@@ -91,7 +91,7 @@ Sidebar footer: avatar (28–30px circle), GitHub login, and connection status i
 | `/projects` | My Projects | new (today's `/` list moves here) |
 | `/activity` | Recent Activity | new |
 | `/account` | Account | new |
-| `/help` | How Plainly works + glossary | modify existing |
+| `/help` | How Yourkly works + glossary | modify existing |
 | `/new` | Start a new project | new (replaces the modal in `Projects.jsx`) |
 | `/p/:repo` | Project Home | new |
 | `/p/:repo/updates` | Updates list | new |
@@ -115,7 +115,7 @@ Every route must resolve — no 404s, no dead `<Link>`s. The existing catch-all 
 
 ## 5. Project Memory — the data model **[REQUIRES BACKEND]**
 
-GitHub cannot store "the user was redesigning onboarding." Plainly must. Persist one memory record per project. Start with `localStorage` keyed `plainly_memory_v1`; move it server-side later without changing the shape.
+GitHub cannot store "the user was redesigning onboarding." Yourkly must. Persist one memory record per project. Start with `localStorage` keyed `plainly_memory_v1`; move it server-side later without changing the shape.
 
 ```json
 {
@@ -144,7 +144,7 @@ GitHub cannot store "the user was redesigning onboarding." Plainly must. Persist
       "story": [
         { "what": "You described this update", "at": "..." },
         { "what": "You marked it as sent to Claude", "at": "..." },
-        { "what": "Plainly noticed 3 files changed in GitHub", "at": "..." }
+        { "what": "Yourkly noticed 3 files changed in GitHub", "at": "..." }
       ]
     }
   ]
@@ -219,7 +219,7 @@ The primary button's label is `cta` and its destination is `route`. **Never** sh
 Evaluate in order, stop at the first match:
 
 1. GitHub connection expired → "Sign in again to keep working." → Reconnect
-2. GitHub has commits Plainly hasn't seen, and the user has local edits → "Get the latest version before you edit — GitHub is ahead of this computer." → Get latest version
+2. GitHub has commits Yourkly hasn't seen, and the user has local edits → "Get the latest version before you edit — GitHub is ahead of this computer." → Get latest version
 3. An update is `changes_detected` or `waiting_for_review` → "Read what changed before anything is saved." → Review the changes
 4. Unsaved local edits exist → "Review and save your changes so they're safe in GitHub." → Review and save
 5. An update is `sent_to_ai` → "Check whether {AI} has saved any work yet." → Check for changes
@@ -236,9 +236,9 @@ Never show more than one recommendation.
 
 Two columns, max-width 940px, centred, background `linear-gradient(180deg,#FBFAF8,#F4F2FB)`.
 
-Left: wordmark `plainly` (26px/700, `--purple`). H1 46px/700/-.03em: **"Your GitHub projects, in plain English."** Then 19px: *"Plainly sits on top of the GitHub account you already have and does one job: tell you where you left off, what changed, and what to do next — without the jargon."* Then 15px `--grey`: *"Your files stay in your real GitHub repositories. Nothing is copied anywhere else."* Then the primary button **Sign in with GitHub** (16px, 12px radius, purple shadow) and under it, centred, 13px `--grey`: *"No new password. Your GitHub account is your login."*
+Left: wordmark `yourkly` (26px/700, `--purple`). H1 46px/700/-.03em: **"Your GitHub projects, in plain English."** Then 19px: *"Yourkly sits on top of the GitHub account you already have and does one job: tell you where you left off, what changed, and what to do next — without the jargon."* Then 15px `--grey`: *"Your files stay in your real GitHub repositories. Nothing is copied anywhere else."* Then the primary button **Sign in with GitHub** (16px, 12px radius, purple shadow) and under it, centred, 13px `--grey`: *"No new password. Your GitHub account is your login."*
 
-Right: a white card, label "WHAT PLAINLY CALLS THINGS", six rows `grey term → bold Plainly term`, hairline dividers: Repository → Project · Commit → Save Point · Push → Save to GitHub · Pull → Get latest version · Branch → Separate version · Diff → See what changed.
+Right: a white card, label "WHAT YOURKLY CALLS THINGS", six rows `grey term → bold Yourkly term`, hairline dividers: Repository → Project · Commit → Save Point · Push → Save to GitHub · Pull → Get latest version · Branch → Separate version · Diff → See what changed.
 
 This screen exists because the current sign-in never says what the product is for. Do not shorten it.
 
@@ -246,7 +246,7 @@ Error state (`?auth_error`): keep the existing message.
 
 ### 7.2 First run — `/` with zero repos
 
-H1 32px: "You're in, {FirstName}." Body: *"Your GitHub account is connected but there are no projects in it yet. A project is one place for everything that belongs together — an app, a book, a client job."* One card: "Make your first project" + *"It takes one line: a name and what it's for. From then on Plainly keeps every version of your work and tells you what changed."* + primary **Start a new project**. Below, a text link: **"Show me how Plainly works first →"** → `/help`.
+H1 32px: "You're in, {FirstName}." Body: *"Your GitHub account is connected but there are no projects in it yet. A project is one place for everything that belongs together — an app, a book, a client job."* One card: "Make your first project" + *"It takes one line: a name and what it's for. From then on Yourkly keeps every version of your work and tells you what changed."* + primary **Start a new project**. Below, a text link: **"Show me how Yourkly works first →"** → `/help`.
 
 ### 7.3 Home dashboard — `/` (max-width 1000px)
 
@@ -254,7 +254,7 @@ Order on the page, top to bottom:
 
 1. H1 30px `{greeting}, {FirstName}.` (`greeting()` already exists in `src/utils/time.js`) with a secondary **All projects** button right-aligned (`white-space: nowrap`). Subtitle 15.5px `--grey`: *"Here's where you left off, what changed, and what to do next."*
 
-2. **Dismissible explainer** (`--lilac-bg`, `--lilac-border`, 14px radius): "New here? This is what Plainly does." / *"Your work lives in GitHub. Plainly is the front door: it remembers where you stopped, explains what changed in normal words, and keeps a Save Point every time you save so you can always go back."* + a **Got it** text button that persists dismissal.
+2. **Dismissible explainer** (`--lilac-bg`, `--lilac-border`, 14px radius): "New here? This is what Yourkly does." / *"Your work lives in GitHub. Yourkly is the front door: it remembers where you stopped, explains what changed in normal words, and keeps a Save Point every time you save so you can always go back."* + a **Got it** text button that persists dismissal.
 
 3. **CONTINUE WHERE YOU LEFT OFF** — the dominant element. White card, `--lilac-border`, 18px radius, `--shadow-hero`, padding 32px 34px. Inside:
    - Line of context: project name in `--purple` 14px/600 · "Update" · status pill (`white-space: nowrap`)
@@ -286,7 +286,7 @@ Status pill labels for projects: "Up to date" · "Changes not saved" · "Needs r
 
 ### 7.5 Updates list — `/p/:repo/updates` (max-width 860px)
 
-Intro: *"An update is one thing you want to change, described in your words. Plainly keeps track of what it touched, which AI worked on it, and whether it's saved. {n} updates in progress."* Header has a primary **Make an update**.
+Intro: *"An update is one thing you want to change, described in your words. Yourkly keeps track of what it touched, which AI worked on it, and whether it's saved. {n} updates in progress."* Header has a primary **Make an update**.
 
 Each row: title + status pill / goal / "Worked on with {AI} · {n} files affected · Last activity {time}" and, right-aligned, a "Next step" label with that update's own next step in `--purple` 13.5px/600.
 
@@ -294,18 +294,18 @@ Each row: title + status pill / goal / "Worked on with {AI} · {n} files affecte
 
 H1 **"What do you want to change?"** Body: *"Describe the result you want. You do not need to know which file or technical step is involved."* Textarea min-height 130px, placeholder: *"Add a clearer welcome message to the homepage and make the main button easier to find."*
 
-On submit, create the update record (`status: planned`) and show a summary card: **Your update** → "What you want" (their words) → "Likely area involved" → "Suggested next step". For "Likely area involved", **do not guess**. Unless you have a real signal, print: *"Plainly has not confirmed which file controls this. Your AI can find it from the project contents included in the handoff."* Actions: **Continue with AI** (primary) · Browse project files · Save task for later.
+On submit, create the update record (`status: planned`) and show a summary card: **Your update** → "What you want" (their words) → "Likely area involved" → "Suggested next step". For "Likely area involved", **do not guess**. Unless you have a real signal, print: *"Yourkly has not confirmed which file controls this. Your AI can find it from the project contents included in the handoff."* Actions: **Continue with AI** (primary) · Browse project files · Save task for later.
 
 ### 7.7 Continue with AI — `/p/:repo/u/:updateId/ai` (max-width 860px)
 
-Intro: *"Plainly writes a handoff with everything the AI needs to pick up where you left off. Copy it, paste it into your AI, then come back and save what it produced."*
+Intro: *"Yourkly writes a handoff with everything the AI needs to pick up where you left off. Copy it, paste it into your AI, then come back and save what it produced."*
 
-If a handoff already exists for this update, a `--lilac-bg` strip at the top: **"You continued this project with {AI} {time ago}."** / *"Did you make changes? Plainly can only see them once they're in your files."* + **Review project changes**.
+If a handoff already exists for this update, a `--lilac-bg` strip at the top: **"You continued this project with {AI} {time ago}."** / *"Did you make changes? Yourkly can only see them once they're in your files."* + **Review project changes**.
 
 Then four numbered steps:
 
 1. **"Which AI are you using?"** — chips: Claude · ChatGPT · Bob · Codex · Other. Selected chip = purple fill, white text.
-2. **"What Plainly is packing"** — a checklist of eight context items, each with a label, a `--grey` detail line, and a 22px checkbox. The first three are always on and show "Always included" on the right:
+2. **"What Yourkly is packing"** — a checklist of eight context items, each with a label, a `--grey` detail line, and a 22px checkbox. The first three are always on and show "Always included" on the right:
    - What this project is — *Your project description and README* (locked)
    - What you asked for — *The goal of this update, in your words* (locked)
    - Where you left off — *Last file, last Save Point, last AI* (locked)
@@ -317,7 +317,7 @@ Then four numbered steps:
 
    Unchecking an item **must remove that section from the handoff preview below**. A toggle that changes nothing is worse than no toggle.
 3. **"Your handoff"** — monospace preview, max-height ~330px, scrollable. Buttons: **Copy handoff** (primary; label becomes "Copied ✓") · **Open {AI}** · a `--grey` note confirming what happened.
-4. **"Tell Plainly you've sent it"** — `--lilac-bg` strip + **Mark as sent to {AI}**. This is what sets `handoff.sentAt` and `commitShaAtSend`, which is what makes return-detection possible. Note: *"Do this so Plainly knows to watch for changes when you come back."*
+4. **"Tell Yourkly you've sent it"** — `--lilac-bg` strip + **Mark as sent to {AI}**. This is what sets `handoff.sentAt` and `commitShaAtSend`, which is what makes return-detection possible. Note: *"Do this so Yourkly knows to watch for changes when you come back."*
 
 **Handoff format** — generate exactly this shape, omitting any unchecked section:
 
@@ -354,7 +354,7 @@ RECENT SAVE POINTS:
 
 WHAT NOT TO TOUCH:
 - Do not change anything outside this update.
-- Do not save or push anything to GitHub — I will do that in Plainly.
+- Do not save or push anything to GitHub — I will do that in Yourkly.
 
 HOW TO REPORT BACK:
 - List every file you changed and say what you changed, in plain English.
@@ -363,15 +363,15 @@ HOW TO REPORT BACK:
 
 ### 7.8 Return from AI — `/p/:repo/u/:updateId/return` **[REQUIRES BACKEND]**
 
-Detection: compare `handoff.commitShaAtSend` against the branch head now; look at which files changed and whether new commits were authored outside Plainly.
+Detection: compare `handoff.commitShaAtSend` against the branch head now; look at which files changed and whether new commits were authored outside Yourkly.
 
-H1 **"You continued this update with {AI}."** Body: *"Plainly checked GitHub to see what happened while you were away."* Then exactly one of five branches — chosen from real state, never from a flag:
+H1 **"You continued this update with {AI}."** Body: *"Yourkly checked GitHub to see what happened while you were away."* Then exactly one of five branches — chosen from real state, never from a flag:
 
 1. **Changes detected** (files changed > 0): amber tick + "**{n} files changed after your handoff**", then What you asked for / What changed / Worth a look, then a recommended-step panel *"Read the plain-English review before anything is saved."* + primary **Review changes**.
-2. **Nothing yet** (no new commits): "Nothing has changed yet" / *"Your project in GitHub looks exactly as it did before the handoff. That usually means the AI hasn't saved its work yet — or it made changes somewhere Plainly can't see, like on your own computer."* → **Check again** · Send the handoff again.
-3. **Already saved externally** (new commits not authored by Plainly): green tick + "The AI already saved this work to GitHub" / *"There are {n} new Save Points that Plainly didn't create. Your work is safe — but nobody has read through it in plain English yet, so it's worth a look before you build on top of it."* → **Read what changed** · See the Save Points.
-4. **GitHub is newer than local** (remote ahead + local edits): red-bordered card, "GitHub has a newer version than the one on this computer" / *"Get the latest version first. If you edit now, you'd be working from an old copy and Plainly would have to ask you to choose between them later."* → **Get latest version** · See what's different first.
-5. **Can't check** (network/API failure): "Plainly can't check GitHub right now" / *"This is a connection problem, not a problem with your work. Nothing has been lost, and nothing will be saved until you say so."* → **Try again** · Back to the update.
+2. **Nothing yet** (no new commits): "Nothing has changed yet" / *"Your project in GitHub looks exactly as it did before the handoff. That usually means the AI hasn't saved its work yet — or it made changes somewhere Yourkly can't see, like on your own computer."* → **Check again** · Send the handoff again.
+3. **Already saved externally** (new commits not authored by Yourkly): green tick + "The AI already saved this work to GitHub" / *"There are {n} new Save Points that Yourkly didn't create. Your work is safe — but nobody has read through it in plain English yet, so it's worth a look before you build on top of it."* → **Read what changed** · See the Save Points.
+4. **GitHub is newer than local** (remote ahead + local edits): red-bordered card, "GitHub has a newer version than the one on this computer" / *"Get the latest version first. If you edit now, you'd be working from an old copy and Yourkly would have to ask you to choose between them later."* → **Get latest version** · See what's different first.
+5. **Can't check** (network/API failure): "Yourkly can't check GitHub right now" / *"This is a connection problem, not a problem with your work. Nothing has been lost, and nothing will be saved until you say so."* → **Try again** · Back to the update.
 
 Every count and filename here must be real. If you can't compute it, use branch 5.
 
@@ -396,7 +396,7 @@ Then **Files affected** — monospace chips + a **Show technical details** toggl
 Then **"What do you want to do?"** — four choice rows, each with a consequence:
 
 - **Accept and save** — *"Create a Save Point in GitHub with these changes. Recommended."* (purple button inside the row)
-- **Ask the AI to fix something** — *"Plainly writes a follow-up handoff that includes what it got wrong."* → sets `needs_correction`
+- **Ask the AI to fix something** — *"Yourkly writes a follow-up handoff that includes what it got wrong."* → sets `needs_correction`
 - **Change it myself first** — *"Open the files and edit before saving."*
 - **Undo all of it** — *"Go back to how the project was before this update. Nothing is deleted — the AI's version stays in your history."*
 
@@ -408,7 +408,7 @@ Body: *"Here's exactly what will be saved to GitHub. Nothing leaves this screen 
 - **"What changed?"** input. Hint: *"One short line in your own words. This becomes the name of your Save Point, so future-you can find it."* Placeholder: *"Made the project description clearer"*.
 - Primary: **Create Save Point and save to GitHub**. Secondary: **Keep editing**.
 
-**Save conflict** (GitHub 409 — the existing error string in `src/api/github.js` becomes this screen): red-bordered card at the top, "This didn't save — the file changed somewhere else" / *"Someone or something else saved {file} to GitHub while you were editing — probably an AI you handed this project to, {time ago}."* / **"Nothing is lost.** Your edits are still here on this computer. You just need to decide which version wins."* Then three rows: **Show me the other version first** (marked *Recommended*) · **Keep my version** (*"Saves your edits over theirs. Their version stays in the history, so it can be restored."*) · **Keep their version** (*"Throws away the edits you made on this computer. Plainly will ask you to confirm."* — and it must actually ask).
+**Save conflict** (GitHub 409 — the existing error string in `src/api/github.js` becomes this screen): red-bordered card at the top, "This didn't save — the file changed somewhere else" / *"Someone or something else saved {file} to GitHub while you were editing — probably an AI you handed this project to, {time ago}."* / **"Nothing is lost.** Your edits are still here on this computer. You just need to decide which version wins."* Then three rows: **Show me the other version first** (marked *Recommended*) · **Keep my version** (*"Saves your edits over theirs. Their version stays in the history, so it can be restored."*) · **Keep their version** (*"Throws away the edits you made on this computer. Yourkly will ask you to confirm."* — and it must actually ask).
 
 ### 7.11 Save confirmation
 
@@ -422,7 +422,7 @@ Each entry: plain title (use the existing `formatCommitLabel` in `src/utils/time
 
 ### 7.13 Save Points / restore — `/p/:repo/points`
 
-*"Pick the Save Point you want to go back to. Plainly puts those files back and saves that as a new Save Point — so nothing newer is ever lost."* Each row: title / "{who} · {when} · {n} files · {version}" / **Go back to this version**.
+*"Pick the Save Point you want to go back to. Yourkly puts those files back and saves that as a new Save Point — so nothing newer is ever lost."* Each row: title / "{who} · {when} · {n} files · {version}" / **Go back to this version**.
 
 After restoring, a `--green-bg` strip: *"Restored — your files now look the way they did at "{title}". This is saved as a new Save Point."* + **Open the file**. Keep the existing restore implementation in `History.jsx`.
 
@@ -444,7 +444,7 @@ Main version card (`--lilac-border`): "Main version" + a `--green-bg` pill **"Th
 
 ### 7.16 Who Can See It — `/p/:repo/share` (max-width 820px)
 
-*"Pick a setting and Plainly tells you exactly what it means — in normal words, before anything changes."*
+*"Pick a setting and Yourkly tells you exactly what it means — in normal words, before anything changes."*
 
 Top row: "Project address" + the real `github.com/{owner}/{repo}` link + **Copy address** + a `--grey` note that reflects the *current* setting ("Only you can open this link right now." / "Only you and people you invited can open this link." / "Anyone can open this link.").
 
@@ -473,23 +473,23 @@ Wire this to `updateRepoSettings` (already in `src/api/github.js`) and the GitHu
 
 ### 7.17 Project Settings — `/p/:repo/settings` (max-width 700px)
 
-Name (warn: *"This renames the repository in GitHub too. Existing links may stop working."*) · What this project is (*"One sentence. Shows on your dashboard and in every AI handoff."*) · Who can see this project (links to §7.16) · Delete, in a `--red-border` card: *"This deletes the repository and every Save Point in it from GitHub. It cannot be undone, and Plainly will ask you to type the project name first."* — and it must actually require typing the name.
+Name (warn: *"This renames the repository in GitHub too. Existing links may stop working."*) · What this project is (*"One sentence. Shows on your dashboard and in every AI handoff."*) · Who can see this project (links to §7.16) · Delete, in a `--red-border` card: *"This deletes the repository and every Save Point in it from GitHub. It cannot be undone, and Yourkly will ask you to type the project name first."* — and it must actually require typing the name.
 
 ### 7.18 Start a new project — `/new` (max-width 680px)
 
-*"A project is one place for everything that belongs together — an app, a book, a class. Plainly creates it as a real GitHub repository on your account."* Fields: name (*"You can rename it later."*) and **what it's for** (*"This shows on your dashboard and goes into every AI handoff, so future-you and any AI know what this is."*) — this is not optional decoration, it feeds §7.7. Visibility: **Only me** / **Anyone with the link** (*"Private means only you. You can change this in project settings later."*). Then **Create project**.
+*"A project is one place for everything that belongs together — an app, a book, a class. Yourkly creates it as a real GitHub repository on your account."* Fields: name (*"You can rename it later."*) and **what it's for** (*"This shows on your dashboard and goes into every AI handoff, so future-you and any AI know what this is."*) — this is not optional decoration, it feeds §7.7. Visibility: **Only me** / **Anyone with the link** (*"Private means only you. You can change this in project settings later."*). Then **Create project**.
 
-After creating, the empty project state: green strip *"Created in GitHub. It's empty right now — that's normal."* then a centred card: "There's nothing in here yet" / *"Two good first moves: write down what you want to build, or add the files you already have. Either way Plainly keeps every version from here on."* → **Describe what you want to build** · Add files.
+After creating, the empty project state: green strip *"Created in GitHub. It's empty right now — that's normal."* then a centred card: "There's nothing in here yet" / *"Two good first moves: write down what you want to build, or add the files you already have. Either way Yourkly keeps every version from here on."* → **Describe what you want to build** · Add files.
 
 ### 7.19 Account — `/account`
 
-Avatar + login + "Signed in with GitHub". A `--green-bg` panel: *"Plainly can read and save to your projects. You can disconnect any time and your files stay in GitHub."* Plus one setting: **Show technical GitHub words** — *"Adds the real GitHub term in grey next to Plainly's plain-English label, so you learn them as you go."*
+Avatar + login + "Signed in with GitHub". A `--green-bg` panel: *"Yourkly can read and save to your projects. You can disconnect any time and your files stay in GitHub."* Plus one setting: **Show technical GitHub words** — *"Adds the real GitHub term in grey next to Yourkly's plain-English label, so you learn them as you go."*
 
-**Connection expired state** (401 from the API — replaces today's silent `signOut()` in `useAuth.js`): full-page, amber `!` glyph, H1 **"Plainly needs you to sign in again"** / *"GitHub asks you to renew permission every so often. That's all this is — nothing is wrong and nothing was lost."* / *"Your work is still exactly where it was. Any edits you hadn't saved yet are being kept on this computer and will be waiting when you come back."* → **Reconnect to GitHub** + *"Takes one click. You'll come straight back to this page."* Silently logging the user out is the worst version of this.
+**Connection expired state** (401 from the API — replaces today's silent `signOut()` in `useAuth.js`): full-page, amber `!` glyph, H1 **"Yourkly needs you to sign in again"** / *"GitHub asks you to renew permission every so often. That's all this is — nothing is wrong and nothing was lost."* / *"Your work is still exactly where it was. Any edits you hadn't saved yet are being kept on this computer and will be waiting when you come back."* → **Reconnect to GitHub** + *"Takes one click. You'll come straight back to this page."* Silently logging the user out is the worst version of this.
 
 ### 7.20 Help — `/help`
 
-*"Plainly is a plain-English way to use GitHub. Your files live in your real GitHub account — Plainly just makes it obvious what's going on and what to do next."* Four numbered step cards (sign in / pick up where you left off / make a Save Point / hand it to an AI), then the glossary: each entry shows the Plainly term, "GitHub calls this: {term}" in `--grey`, and a plain definition. Cover: Project, Save Point, What changed?, Save to GitHub, Get latest version, Separate version, Main version, See what changed, Restore an earlier version, Changes not saved yet.
+*"Yourkly is a plain-English way to use GitHub. Your files live in your real GitHub account — Yourkly just makes it obvious what's going on and what to do next."* Four numbered step cards (sign in / pick up where you left off / make a Save Point / hand it to an AI), then the glossary: each entry shows the Yourkly term, "GitHub calls this: {term}" in `--grey`, and a plain definition. Cover: Project, Save Point, What changed?, Save to GitHub, Get latest version, Separate version, Main version, See what changed, Restore an earlier version, Changes not saved yet.
 
 ### 7.21 Loading and empty states
 

@@ -1,4 +1,4 @@
-# Plainly Redesign — End-to-End Test Plan
+# Yourkly Redesign — End-to-End Test Plan
 
 **Test Scope:** All 7 core user workflows  
 **Environment:** Development (localhost:5173)  

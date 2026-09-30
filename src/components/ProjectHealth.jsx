@@ -14,7 +14,7 @@ const SUCCESS = new Set(['success', 'neutral', 'skipped'])
 
 function checkSummary(checks) {
   if (checks === undefined) return { tone: 'waiting', title: 'Checking the latest saved version…' }
-  if (checks === null) return { tone: 'unknown', title: "Plainly couldn't check the latest version." }
+  if (checks === null) return { tone: 'unknown', title: "Yourkly couldn't check the latest version." }
   if (checks.total === 0) return { tone: 'unknown', title: 'No automatic checks are connected to this project yet.' }
 
   const running = checks.runs.filter(run => run.status !== 'completed')
@@ -22,7 +22,7 @@ function checkSummary(checks) {
     return {
       tone: 'waiting',
       title: `${running.length === 1 ? 'A check is' : `${running.length} checks are`} still running.`,
-      detail: 'Plainly will not call this version ready until GitHub reports back.',
+      detail: 'Yourkly will not call this version ready until GitHub reports back.',
     }
   }
 
@@ -97,7 +97,7 @@ export default function ProjectHealth({ auth, owner, repo, updates, unsaved }) {
   const rows = [
     unsaved
       ? { tone: 'problem', title: 'Changes are waiting to be saved.', to: `/p/${owner}/${repo}/save`, cta: 'Review and save' }
-      : { tone: 'good', title: 'Everything Plainly knows about is saved in GitHub.' },
+      : { tone: 'good', title: 'Everything Yourkly knows about is saved in GitHub.' },
     checkSummary(checks),
     publishSummary(site),
     ...updates
@@ -127,7 +127,7 @@ export default function ProjectHealth({ auth, owner, repo, updates, unsaved }) {
         </button>
       </div>
       <p className="project-health-intro">
-        Plainly checks the latest saved version and anything GitHub reports about publishing.
+        Yourkly checks the latest saved version and anything GitHub reports about publishing.
       </p>
       <div className="project-health-list">
         {rows.map((row, index) => (

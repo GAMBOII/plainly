@@ -3,7 +3,7 @@
  *
  * A project's to-do list, which on GitHub is called Issues.
  *
- * This is the first thing in Plainly that isn't stored in one browser. An
+ * This is the first thing in Yourkly that isn't stored in one browser. An
  * update lives in localStorage, which is why a project worked on all week can
  * open looking empty — the record was on a different machine. A thing to do
  * lives in GitHub: it survives a new laptop, and anyone you share the project

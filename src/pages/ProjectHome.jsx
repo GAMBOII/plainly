@@ -44,7 +44,7 @@ export default function ProjectHome({ auth }) {
       .finally(() => setLoading(false))
   }, [token, owner, repo])
 
-  // What has actually happened in this project. Plainly only knows about the
+  // What has actually happened in this project. Yourkly only knows about the
   // updates it created itself, and most work arrives some other way — pushed
   // from an editor, from an AI tool, from another machine. Without this the
   // screen says "you haven't started an update" to someone who has been
@@ -70,7 +70,7 @@ export default function ProjectHome({ auth }) {
     : null
 
   // "Changes not saved yet" is only true when an update has been reviewed and
-  // is waiting to be saved. Anything else and Plainly says nothing.
+  // is waiting to be saved. Anything else and Yourkly says nothing.
   const unsaved = allUpdates.some(u => u.status === 'ready_to_save')
 
   // Continue with AI opens for the update in progress, or for the project
@@ -202,10 +202,10 @@ export default function ProjectHome({ auth }) {
           </section>
         </>
       ) : recent.length > 0 ? (
-        /* No update of Plainly's own, but the project has real history. Show
+        /* No update of Yourkly's own, but the project has real history. Show
            what actually happened rather than a sentence about nothing. These
            are Save Points, and they say so — an update is a different thing,
-           with a lifecycle Plainly watched. */
+           with a lifecycle Yourkly watched. */
         <>
           <div className="section-label">Recently saved to GitHub</div>
           <section className="project-update-card">
@@ -228,7 +228,7 @@ export default function ProjectHome({ auth }) {
             </div>
 
             <p className="project-recent-note">
-              This is work already saved in GitHub. Start an update when you want Plainly to
+              This is work already saved in GitHub. Start an update when you want Yourkly to
               follow a change from beginning to end.
             </p>
 

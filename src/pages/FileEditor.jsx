@@ -3,7 +3,7 @@
  *
  * One file, one writing surface (HANDOFF §7.14 → editor).
  *
- * The bar says, in Plainly's words, whether this file is in GitHub yet, and
+ * The bar says, in Yourkly's words, whether this file is in GitHub yet, and
  * the only primary action is Review and save — nothing is written to GitHub
  * from this screen. Edits become drafts as you type, so leaving the page
  * doesn't lose them and "Changes not saved yet" is true everywhere else.
@@ -58,7 +58,7 @@ export default function FileEditor({ auth }) {
         recordFileOpen(owner, repo, path)
       })
       .catch(() => {
-        if (!cancelled) setError("Plainly couldn't open that file. It may have been renamed or removed.")
+        if (!cancelled) setError("Yourkly couldn't open that file. It may have been renamed or removed.")
       })
       .finally(() => { if (!cancelled) setLoading(false) })
 

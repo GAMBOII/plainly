@@ -4,7 +4,7 @@
  * Separate versions, explained as safe copies of the whole project
  * (HANDOFF §7.15).
  *
- * "Get latest version" checks whether GitHub has moved on since Plainly last
+ * "Get latest version" checks whether GitHub has moved on since Yourkly last
  * looked, and says when it checked. It never claims to be up to date without
  * having asked.
  */
@@ -55,7 +55,7 @@ export default function Versions({ auth }) {
   const mainName = repoData?.default_branch || 'main'
 
   // How far each separate version has moved. One request each, so it's bounded
-  // — and a version Plainly couldn't compare says so rather than showing 0.
+  // — and a version Yourkly couldn't compare says so rather than showing 0.
   useEffect(() => {
     if (!token || !owner || !mainName || branches.length === 0) return
     let cancelled = false
@@ -96,7 +96,7 @@ export default function Versions({ auth }) {
       const commits = await getCommits(token, owner, repo, 1).catch(() => [])
       if (commits[0]) setLatest(commits[0])
     } catch {
-      setError("Plainly couldn't check GitHub just now. That's a connection problem, not a problem with your work.")
+      setError("Yourkly couldn't check GitHub just now. That's a connection problem, not a problem with your work.")
     }
   }
 
@@ -131,7 +131,7 @@ export default function Versions({ auth }) {
             <div className="versions-note">
               {checked
                 ? checked.behind
-                  ? `Checked ${timeAgo(checked.at)} — GitHub had newer work, and Plainly has caught up.`
+                  ? `Checked ${timeAgo(checked.at)} — GitHub had newer work, and Yourkly has caught up.`
                   : `Checked ${timeAgo(checked.at)} — nothing new in GitHub since your last save.`
                 : 'Checks GitHub for anything saved since you last worked here.'}
             </div>
@@ -146,7 +146,7 @@ export default function Versions({ auth }) {
                 </div>
                 <div className="versions-branch-meta">
                   {gaps[b.name] === undefined && 'Checking how far this has moved…'}
-                  {gaps[b.name] === null && "Plainly couldn't compare this with your main version."}
+                  {gaps[b.name] === null && "Yourkly couldn't compare this with your main version."}
                   {gaps[b.name] && (
                     gaps[b.name].ahead === 0 && gaps[b.name].behind === 0
                       ? 'Exactly the same as your main version.'
@@ -179,7 +179,7 @@ export default function Versions({ auth }) {
             <div className="versions-make">
               <div className="versions-footer-title">Want to try something without risk?</div>
               <div className="versions-footer-body">
-                Plainly copies your project as it is right now into a separate version. Your
+                Yourkly copies your project as it is right now into a separate version. Your
                 main version stays exactly as it is.
               </div>
               {made && (
@@ -207,7 +207,7 @@ export default function Versions({ auth }) {
           </section>
           <p className="versions-note">
             Bringing a separate version back into your main one still happens on GitHub —
-            Plainly opens the right page rather than pretending it can do it here.{' '}
+            Yourkly opens the right page rather than pretending it can do it here.{' '}
             <a
               href={`https://github.com/${owner}/${repo}/branches`}
               target="_blank"

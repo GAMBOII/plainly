@@ -1,4 +1,4 @@
-# Plainly — Project Status
+# Yourkly — Project Status
 
 This file is maintained by every agent working in this repository. Update it after
 every substantial task. See `AGENTS.md` for the update protocol.
@@ -39,7 +39,7 @@ Follow-up: owner requested adjusted pill buttons and a transparent scrolling men
 **Updated by:** Continue-in handoff
 **Branch:** main
 
-Plainly is a working application. The core feature set — GitHub OAuth sign-in, project
+Yourkly is a working application. The core feature set — GitHub OAuth sign-in, project
 list, file editor, save points, history, restore, project memory, task system, AI
 handoffs, project timeline, and goal-based help — is complete and deployable.
 
@@ -47,7 +47,7 @@ The build passes cleanly (`npm run build`, 101 modules, zero errors).
 
 ### Security Hardening (2026-09-03)
 
-GitHub credentials no longer reach browser storage. Plainly now starts OAuth with PKCE,
+GitHub credentials no longer reach browser storage. Yourkly now starts OAuth with PKCE,
 keeps the OAuth transaction and encrypted session in `HttpOnly` cookies, and sends all
 GitHub API calls through a same-origin proxy protected by a session CSRF token. OAuth and
 proxy endpoints validate their request shape and apply per-instance rate limits. Production
@@ -68,7 +68,7 @@ out, so the inbox only shows work the person can act on now.
 
 ### Project Connection Health (2026-09-03)
 
-Project Home now shows a plain-language health card. It checks whether Plainly has
+Project Home now shows a plain-language health card. It checks whether Yourkly has
 unsaved work, whether GitHub's latest automatic checks are passing, whether a GitHub
 Pages site is ready, and whether an AI update is waiting. It never invents a result:
 hosting systems that do not report through GitHub are shown as unknown rather than healthy.
@@ -247,7 +247,7 @@ modal that assembles full project context into a structured prompt the user can 
 and take to any AI tool to continue work immediately.
 
 The feature is scoped to the whole **project**, not a single document. This is consistent
-with Plainly's identity as a plain-language interface for GitHub.
+with Yourkly's identity as a plain-language interface for GitHub.
 
 ### Implemented files
 
@@ -268,7 +268,7 @@ with Plainly's identity as a plain-language interface for GitHub.
   by name only. A future version could offer multi-file content inclusion
 - Bob AI URL points to IBM watsonx Code Assistant marketing page — update when a direct
   conversation URL is available
-- No analytics on which AI tool is most used (by design; no tracking in Plainly)
+- No analytics on which AI tool is most used (by design; no tracking in Yourkly)
 
 ---
 
@@ -331,7 +331,7 @@ with Plainly's identity as a plain-language interface for GitHub.
 - Renamed the project handoff entry point to **Continue in…** throughout the project.
 - Added Lovable, Cursor, and VS Code alongside the existing AI choices. Each choice opens its official service and shows a clear, tool-specific copy-and-paste next step.
 - Kept the handoff local and user-controlled: Yourkly creates the project brief, the user copies it, and no third-party credentials or project data are sent by Yourkly.
-- Updated generated project-brief branding from Plainly to Yourkly and added visible keyboard focus styles to the destination picker.
+- Updated generated project-brief branding from Yourkly to Yourkly and added visible keyboard focus styles to the destination picker.
 
 ## Current Update (2026-09-04 — Social preview image)
 

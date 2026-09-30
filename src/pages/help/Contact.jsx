@@ -1,8 +1,8 @@
 /**
  * help/Contact.jsx — /help/contact
  *
- * Plainly has no support desk, and inventing one would be a lie. This opens a
- * new issue on the project Plainly itself is built from — a real place where a
+ * Yourkly has no support desk, and inventing one would be a lie. This opens a
+ * new issue on the project Yourkly itself is built from — a real place where a
  * report can be read and answered.
  *
  * Because that page is public, the screen says so before you write anything.
@@ -14,8 +14,8 @@ import { CONTACT_REPO, issueUrl } from '../../help/content'
 
 const KINDS = [
   { id: 'Something is broken', hint: 'A screen errors, a button does nothing, a number looks wrong.' },
-  { id: 'I got stuck',         hint: "You couldn't work out how to do something Plainly should do." },
-  { id: 'An idea',             hint: 'Something Plainly should do that it does not do yet.' },
+  { id: 'I got stuck',         hint: "You couldn't work out how to do something Yourkly should do." },
+  { id: 'An idea',             hint: 'Something Yourkly should do that it does not do yet.' },
 ]
 
 export default function Contact() {
@@ -29,9 +29,9 @@ export default function Contact() {
     <section className="help-section">
       <h2 className="help-section-title">Contact support</h2>
       <p className="help-section-intro">
-        Reports go to Plainly's own project on GitHub, at{' '}
+        Reports go to Yourkly's own project on GitHub, at{' '}
         <span className="help-mono">{CONTACT_REPO}</span>. That is where the people who build
-        Plainly read them.
+        Yourkly read them.
       </p>
 
       <div className="help-callout help-contact-warning">
@@ -71,7 +71,7 @@ export default function Contact() {
         </label>
 
         <label className="help-contact-field">
-          <span className="section-label section-label--tight">Where in Plainly? (optional)</span>
+          <span className="section-label section-label--tight">Where in Yourkly? (optional)</span>
           <input
             type="text"
             className="help-text-input"

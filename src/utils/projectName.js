@@ -1,9 +1,9 @@
 /**
  * projectName.js
  *
- * The name Plainly shows for a project. GitHub repositories are lowercase and
+ * The name Yourkly shows for a project. GitHub repositories are lowercase and
  * hyphenated ("plainly-extension"); the design shows a readable project name
- * ("Plainly Extension").
+ * ("Yourkly Extension").
  *
  * Presentation only — the real repository name is never changed, and anywhere
  * the exact repo name matters (renaming, delete confirmation, URLs) keeps

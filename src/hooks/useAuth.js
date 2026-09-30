@@ -32,7 +32,7 @@ export function useAuth() {
   }
 
   /**
-   * Signs out here, then disconnects Plainly from GitHub.
+   * Signs out here, then disconnects Yourkly from GitHub.
    *
    * The stored token goes first, before anything can fail: close the tab
    * mid-request and you are still signed out next time. Nobody gets stuck

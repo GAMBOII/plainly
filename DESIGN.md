@@ -1,6 +1,6 @@
-# Plainly — design instructions
+# Yourkly — design instructions
 
-This is the file Plainly hands to an AI. When you press **Continue with AI**, this document
+This is the file Yourkly hands to an AI. When you press **Continue with AI**, this document
 is packed into the handoff as "your project instructions", so anything written here is what
 an AI will follow when it changes this app.
 
@@ -49,7 +49,7 @@ copy Meta's colors or add content, decorative badges, icons or features.
 
 ## 1. What this app is for
 
-Plainly sits on top of a GitHub account and does one job: tell you where you left off,
+Yourkly sits on top of a GitHub account and does one job: tell you where you left off,
 what changed, and what to do next — without the jargon.
 
 Every screen answers one of those three questions. If a screen answers none of them, it
@@ -59,7 +59,7 @@ probably shouldn't exist.
 
 ## 2. Colour
 
-Nothing in the interface uses a colour outside this list. There is no blue in Plainly —
+Nothing in the interface uses a colour outside this list. There is no blue in Yourkly —
 links are purple.
 
 | Token | Value | Used for |
@@ -200,7 +200,7 @@ survive.
 These are design rules, not engineering ones. Breaking them makes the product lie.
 
 - **Never invent a number, filename, date or status.** Every value on screen comes from the
-  GitHub API or from Plainly's own stored memory.
+  GitHub API or from Yourkly's own stored memory.
 - **When something can't be computed yet, say so** — use the honest fallback sentence, or
   the dashed `.pl-todo` "Requires implementation" badge. Never print "Yes" for a check that
   never ran.
@@ -210,7 +210,7 @@ These are design rules, not engineering ones. Breaking them makes the product li
 - **Nothing reaches GitHub without the user pressing a button that says so.** Edits are
   drafts on this computer until Review and save.
 
-## 8a-0. What Plainly asks GitHub for, and what it refuses to guess
+## 8a-0. What Yourkly asks GitHub for, and what it refuses to guess
 
 Four things beyond files and Save Points, all real API calls, all with an honest fallback:
 
@@ -219,21 +219,21 @@ Four things beyond files and Save Points, all real API calls, all with an honest
   separate request with three answers, and `null` (couldn't tell) disables the button rather
   than drawing an empty star that might be wrong.
 - **Separate versions** — branches. Each one says how far it has moved from the main version
-  (`compare`), and *"Plainly couldn't compare this"* when GitHub won't say. Making one happens
-  in Plainly; bringing one back still opens GitHub, because Plainly can't do it yet and
+  (`compare`), and *"Yourkly couldn't compare this"* when GitHub won't say. Making one happens
+  in Yourkly; bringing one back still opens GitHub, because Yourkly can't do it yet and
   shouldn't pretend.
 - **Publishing** — Pages. `building` is its own state, never shown as success: a screen must
   not say a site is live before GitHub says it is. A private project is warned first, because
   publishing puts its files on the open web.
 - **The project check** — check runs from Actions. **No checks configured is not a pass**, and
-  renders as "this project has no automatic checks set up". The panel also states what Plainly
+  renders as "this project has no automatic checks set up". The panel also states what Yourkly
   does *not* look at, which is how the dashed "Requires implementation" badge came off honestly
   rather than by deletion.
 
 ## 8a-i. Things to do live in GitHub, not in a browser
 
 **Things to do** (`/p/:owner/:repo/todo`) is GitHub Issues in plain words, and it is the
-first screen in Plainly that stores nothing locally. An update lives in `localStorage`,
+first screen in Yourkly that stores nothing locally. An update lives in `localStorage`,
 which is why a project worked on all week can open looking empty — the record was on a
 different machine. A thing to do survives a new laptop and is visible to anyone you share
 the project with.
@@ -245,13 +245,13 @@ is not a thing to do, so anything carrying `pull_request` is dropped.
 
 ## 8a. Updates and Save Points are different things
 
-An **update** is something Plainly followed start to finish: you described it, it went to an
+An **update** is something Yourkly followed start to finish: you described it, it went to an
 AI, changes came back, you reviewed and saved. A **Save Point** is something GitHub recorded,
 however it got there — pushed from an editor, from an AI tool, from another machine.
 
 Most work arrives the second way. So the project screens show both, and never blur them: a
 Save Point is never rendered as an update, never counted in "updates in progress", and never
-fed to `heroFor()`. When Plainly has no update of its own, Project Home leads with **Recently
+fed to `heroFor()`. When Yourkly has no update of its own, Project Home leads with **Recently
 saved to GitHub** rather than a sentence about nothing, and Updates carries a **Saved to
 GitHub** list underneath its own.
 
@@ -322,27 +322,27 @@ something the app actually does — where it doesn't, Help says so (see §8).
 itself and asks what you want the AI to do; the update record is created when you mark it as
 sent, not before. `/p/:repo/u/:id/ai` is the same screen scoped to an update in flight.
 
-**Signing out disconnects.** It revokes the GitHub authorization, not just Plainly's copy of
+**Signing out disconnects.** It revokes the GitHub authorization, not just Yourkly's copy of
 the token, so the next sign-in asks you to allow access again — otherwise Account's promise
 that "you can disconnect any time" would be false. Your files stay in GitHub and unsaved
 drafts stay on the computer; the screen says both before you press it. If the revoke can't
-reach GitHub you are still signed out here, and Welcome says GitHub may still list Plainly
+reach GitHub you are still signed out here, and Welcome says GitHub may still list Yourkly
 and where to remove it.
 
 This is the *only* way to make GitHub ask again. GitHub's own rule: someone who has already
 authorized these scopes "won't be shown the OAuth authorization page … this step of the flow
-will automatically complete". So a silent sign-in is not a bug in Plainly — it means the
+will automatically complete". So a silent sign-in is not a bug in Yourkly — it means the
 authorization is still there. Sign-in also sends `prompt=select_account`, which forces the
-account picker every time, and Account states whether GitHub still lists Plainly by asking
+account picker every time, and Account states whether GitHub still lists Yourkly by asking
 GitHub rather than by assuming it — with "couldn't check" as its own answer, never rendered
 as connected.
 
-**Plainly shows every project the account can reach** — yours, ones shared with you, and
+**Yourkly shows every project the account can reach** — yours, ones shared with you, and
 every repository in every organisation you belong to. `getRepos()` sends no `affiliation`
 parameter; it used to narrow to `owner`, which hid shared work entirely.
 
 Because that can mean hundreds, **you can choose which appear** (`/projects/choose`), and two
-rules keep the choice honest: choosing nothing shows everything, so no one opens Plainly to
+rules keep the choice honest: choosing nothing shows everything, so no one opens Yourkly to
 an empty list because of a setting they don't remember making; and while a choice is active
 the list says *"Showing 2 of 4"* rather than presenting a filtered list as the whole truth.
 A stale choice that matches nothing falls back to showing everything. Hiding affects lists

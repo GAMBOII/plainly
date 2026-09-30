@@ -1,4 +1,4 @@
-/* Plainly design tokens — drop in at src/styles/tokens.css and import once in main.jsx
+/* Yourkly design tokens — drop in at src/styles/tokens.css and import once in main.jsx
    Values marked EXISTING are already in src/index.css; keep them as the single source. */
 
 :root {

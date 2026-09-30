@@ -1,7 +1,7 @@
 /**
  * handoff.js
  *
- * Builds the text Plainly hands to an AI, in exactly the shape HANDOFF §7.7
+ * Builds the text Yourkly hands to an AI, in exactly the shape HANDOFF §7.7
  * specifies. Sections the user unticked are left out — that is the whole point
  * of the checklist, and a toggle that changes nothing is worse than no toggle.
  *
@@ -25,7 +25,7 @@ export const CONTEXT_ITEMS = [
 
 /** "src/ (App.jsx, index.css, pages/)" — the flat listing the design asks for. */
 export function describeTree(entries) {
-  if (!entries || entries.length === 0) return '(Plainly could not read the file list.)'
+  if (!entries || entries.length === 0) return '(Yourkly could not read the file list.)'
   return entries
     .map(e => {
       if (e.type !== 'dir') return e.name
@@ -109,7 +109,7 @@ export function buildHandoff({
     parts.push(
       'WHAT NOT TO TOUCH:',
       '- Do not change anything outside this update.',
-      '- Do not save or push anything to GitHub — I will do that in Plainly.',
+      '- Do not save or push anything to GitHub — I will do that in Yourkly.',
       '',
     )
   }

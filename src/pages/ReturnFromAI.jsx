@@ -4,7 +4,7 @@
  * What happened while you were away (HANDOFF §7.8).
  *
  * Detection compares the branch head now against handoff.commitShaAtSend, and
- * tells Plainly's own Save Points apart from anyone else's using the sha list
+ * tells Yourkly's own Save Points apart from anyone else's using the sha list
  * recorded at save time. Exactly one of five branches shows, and it is chosen
  * from real state — never from a flag. If a count can't be computed, the
  * "can't check" branch shows instead of a guess.
@@ -43,7 +43,7 @@ export default function ReturnFromAI({ auth }) {
 
       const diff = await compareCommits(token, owner, repo, sentSha, head)
       const mem = getMemory(owner, repo)
-      const ours = new Set(mem.plainlySavedShas || [])
+      const ours = new Set(mem.yourklySavedShas || [])
       const theirs = (diff.commits || []).filter(c => !ours.has(c.sha))
       const files = (diff.files || []).map(f => f.filename)
 

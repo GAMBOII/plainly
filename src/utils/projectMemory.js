@@ -21,12 +21,12 @@ const DEFAULTS = {
   lastAIAt:          null,
   lastAIInstruction: null,
   openTaskId:        null,
-  // Stores the HEAD commit SHA last seen by Plainly.
+  // Stores the HEAD commit SHA last seen by Yourkly.
   // Used for return-detection: compare against current HEAD after an AI handoff.
   lastSeenCommitSha: null,
-  // Every Save Point Plainly itself created. This is how the return screen can
+  // Every Save Point Yourkly itself created. This is how the return screen can
   // tell "the AI saved this" from "I saved this" without guessing.
-  plainlySavedShas: [],
+  yourklySavedShas: [],
 }
 
 /**
@@ -79,17 +79,17 @@ export function recordFileOpen(owner, repo, fileName) {
  * @param {string} owner
  * @param {string} repo
  * @param {string} label
- * @param {string} [sha]  the commit Plainly just created, when GitHub returns one
+ * @param {string} [sha]  the commit Yourkly just created, when GitHub returns one
  */
 export function recordSave(owner, repo, label, sha) {
   const prev = getMemory(owner, repo)
-  const shas = Array.isArray(prev.plainlySavedShas) ? prev.plainlySavedShas : []
+  const shas = Array.isArray(prev.yourklySavedShas) ? prev.yourklySavedShas : []
   setMemory(owner, repo, {
     lastSaveLabel: label,
     lastSaveAt: new Date().toISOString(),
     lastSeenCommitSha: sha || prev.lastSeenCommitSha,
     // keep the last 50 — enough to answer "did we make this one?"
-    plainlySavedShas: sha ? [sha, ...shas.filter(s => s !== sha)].slice(0, 50) : shas,
+    yourklySavedShas: sha ? [sha, ...shas.filter(s => s !== sha)].slice(0, 50) : shas,
   })
 }
 

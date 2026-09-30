@@ -1,8 +1,8 @@
 /**
  * ContinueWithAI.jsx — /p/:repo/ai and /p/:repo/u/:updateId/ai (max-width 860px)
  *
- * Four numbered steps: pick the AI, see what Plainly is packing, copy the
- * handoff, tell Plainly you sent it (HANDOFF §7.7).
+ * Four numbered steps: pick the AI, see what Yourkly is packing, copy the
+ * handoff, tell Yourkly you sent it (HANDOFF §7.7).
  *
  * It works with or without an update. Without one, step 2 asks what you want
  * the AI to do and the handoff carries everything else about the project —

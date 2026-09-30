@@ -4,7 +4,7 @@
  * Small app preferences, kept in localStorage.
  *
  * showGithubWords: when on, screens print the real GitHub term in grey beside
- * Plainly's plain-English label (HANDOFF §7.19). GitHub's words are always
+ * Yourkly's plain-English label (HANDOFF §7.19). GitHub's words are always
  * secondary — never a button label (§8).
  */
 

@@ -115,7 +115,7 @@ export default function WhatChanged({ auth }) {
                     <div>In GitHub words: commit {c.sha} on the main version</div>
                     <div>
                       {theseFiles === 'loading' && 'Files: checking…'}
-                      {theseFiles === null && "Files: Plainly couldn't get the list for this one."}
+                      {theseFiles === null && "Files: Yourkly couldn't get the list for this one."}
                       {Array.isArray(theseFiles) && (
                         theseFiles.length
                           ? `Files: ${theseFiles.join(', ')}`

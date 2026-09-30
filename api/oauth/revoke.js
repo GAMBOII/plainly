@@ -1,7 +1,7 @@
 /**
  * POST /api/oauth/revoke  { token }
  *
- * Disconnects Plainly from the signed-in GitHub account. Called when someone
+ * Disconnects Yourkly from the signed-in GitHub account. Called when someone
  * signs out, so that signing back in asks them to allow access again.
  *
  * The caller has already signed out locally by the time this runs — a failure

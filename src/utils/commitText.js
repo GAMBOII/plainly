@@ -8,7 +8,7 @@
  * Every screen that shows a Save Point uses this, so the same commit reads the
  * same way everywhere:
  *
- *   title    the first line, in Plainly's words
+ *   title    the first line, in Yourkly's words
  *   summary  ONE line — the first paragraph, cut at a word boundary
  *   body     everything else, for behind "See details". Nothing is discarded,
  *            it just stops being the first thing you see.
@@ -71,7 +71,7 @@ export function splitCommitMessage(message) {
 }
 
 /**
- * "You" for your own Save Points, the GitHub login for anyone else's. Plainly
+ * "You" for your own Save Points, the GitHub login for anyone else's. Yourkly
  * says "You" everywhere else; a project owner reading their own name in a list
  * of their own work is jarring.
  */

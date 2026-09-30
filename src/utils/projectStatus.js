@@ -3,9 +3,9 @@
  *
  * The project-level status pill, so Home and My Projects can never disagree.
  *
- * Every answer is something Plainly actually knows: unsaved edits are drafts
+ * Every answer is something Yourkly actually knows: unsaved edits are drafts
  * sitting on this computer, and the review states come from stored update
- * records. "Up to date" means nothing is outstanding in Plainly — not a claim
+ * records. "Up to date" means nothing is outstanding in Yourkly — not a claim
  * about anything it hasn't seen.
  */
 export function projectStatus(updates = [], drafts = {}) {

@@ -1,18 +1,18 @@
-# Plainly — Architecture
+# Yourkly — Architecture
 
-This document describes the verified current architecture of Plainly based on the
+This document describes the verified current architecture of Yourkly based on the
 existing codebase. It does not describe planned systems as though they already exist.
 
 ---
 
 ## Overview
 
-Plainly is a client-rendered single-page application (SPA) that uses GitHub as its
+Yourkly is a client-rendered single-page application (SPA) that uses GitHub as its
 backend. The React frontend communicates directly with the GitHub REST API for all
 data operations. A thin Node.js/Express server (or equivalent Vercel serverless function)
 exists solely to protect the GitHub OAuth client secret during the authentication handshake.
 
-There is no Plainly database. There is no Plainly-specific backend for data storage.
+There is no Yourkly database. There is no Yourkly-specific backend for data storage.
 All user data lives inside GitHub repositories under the user's own GitHub account.
 
 ---
@@ -20,7 +20,7 @@ All user data lives inside GitHub repositories under the user's own GitHub accou
 ## Repository Layout
 
 ```
-plainly/
+yourkly/
 ├── api/
 │   └── oauth/
 │       └── exchange.js        # Vercel serverless function (production OAuth)
@@ -76,11 +76,11 @@ plain JavaScript with JSX.
 
 ## Authentication Flow
 
-Plainly uses the **GitHub OAuth Web Application Flow** (Authorization Code Grant).
+Yourkly uses the **GitHub OAuth Web Application Flow** (Authorization Code Grant).
 The client secret never leaves the server.
 
 ```
-Browser                       Plainly Server              GitHub
+Browser                       Yourkly Server              GitHub
   │                                │                         │
   │── clicks "Get started" ────────│                         │
   │── redirect to github.com ──────│─────────────────────────▶

@@ -3,7 +3,7 @@
  *
  * Pure utility — no React, no side effects, no API calls.
  * Builds a structured plain-text prompt that gives an AI tool
- * enough context about a Plainly project to continue work immediately.
+ * enough context about a Yourkly project to continue work immediately.
  */
 
 export const CONTENT_LIMIT = 12000 // characters; truncate file content beyond this
@@ -11,7 +11,7 @@ export const CONTENT_LIMIT = 12000 // characters; truncate file content beyond t
 /**
  * The AI tools Continue with AI offers, and where "Open …" sends you.
  *
- * Every url is https. Plainly is served over https, so handing someone a
+ * Every url is https. Yourkly is served over https, so handing someone a
  * plaintext hop would be a downgrade for no benefit — if a tool genuinely has
  * no https address it doesn't belong in this list.
  *

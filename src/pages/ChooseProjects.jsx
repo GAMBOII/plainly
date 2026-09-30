@@ -1,11 +1,11 @@
 /**
  * ChooseProjects.jsx — /projects/choose (max-width 800px)
  *
- * Plainly shows every project your GitHub account can reach, which for anyone
+ * Yourkly shows every project your GitHub account can reach, which for anyone
  * in an organisation can be hundreds. This is where you narrow it down.
  *
  * Choosing nothing shows everything, and the screen says so — nobody should
- * open Plainly to an empty list because of a setting they don't remember
+ * open Yourkly to an empty list because of a setting they don't remember
  * making. Hiding a project only removes it from the lists; a direct link to it
  * still opens.
  */
