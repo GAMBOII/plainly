@@ -14,7 +14,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { getUpdateById, updateUpdate } from '../utils/updateMemory'
 import { getCurrentHeadSha, compareCommits, getCheckRuns } from '../api/github'
 
-const NOT_CHECKED = 'Not checked — Yourk cannot run this yet.'
+const NOT_CHECKED = 'Not checked — Yourkly cannot run this yet.'
 
 export default function ReviewAIChanges({ auth }) {
   const { owner, repo, updateId } = useParams()
@@ -43,7 +43,7 @@ export default function ReviewAIChanges({ auth }) {
         const d = await compareCommits(token, owner, repo, sentSha, head)
         if (!cancelled) { setDiff({ ...d, head }); setLoading(false) }
       } catch {
-        if (!cancelled) { setError('Yourk could not read the changes from GitHub.'); setLoading(false) }
+        if (!cancelled) { setError('Yourkly could not read the changes from GitHub.'); setLoading(false) }
       }
     }
     load()
@@ -68,7 +68,7 @@ export default function ReviewAIChanges({ auth }) {
     ? `${diff.filesChanged} ${diff.filesChanged === 1 ? 'file' : 'files'} changed across ` +
       `${diff.commitCount} ${diff.commitCount === 1 ? 'Save Point' : 'Save Points'}` +
       (changedFiles.length ? `: ${changedFiles.join(', ')}.` : '.')
-    : 'Yourk has nothing to compare against — this update was never marked as sent.'
+    : 'Yourkly has nothing to compare against — this update was never marked as sent.'
 
   function accept() {
     updateUpdate(owner, repo, updateId, {
@@ -107,7 +107,7 @@ export default function ReviewAIChanges({ auth }) {
 
   const buildCheck =
     checks === undefined ? { result: 'Asking GitHub…', ok: null }
-    : checks === null     ? { result: "Yourk couldn't ask GitHub.", ok: null }
+    : checks === null     ? { result: "Yourkly couldn't ask GitHub.", ok: null }
     : checks.total === 0  ? { result: 'This project has no automatic checks set up.', ok: null }
     : running.length      ? { result: `${running.length} still running.`, ok: null }
     : failed.length       ? { result: `${failed.length} of ${checks.total} failed — ${failed.map(f => f.name).join(', ')}`, ok: false }
@@ -174,7 +174,7 @@ export default function ReviewAIChanges({ auth }) {
               ))}
             </div>
             <p className="review-check-scope">
-              Yourk reports what GitHub's own checks say. It does not read the changes
+              Yourkly reports what GitHub's own checks say. It does not read the changes
               itself, so it can't tell you whether a password was added or a link goes
               nowhere — read the changes above for that.
             </p>
@@ -230,7 +230,7 @@ export default function ReviewAIChanges({ auth }) {
               <div className="review-choice-text">
                 <div className="review-choice-name">Ask the AI to fix something</div>
                 <div className="review-choice-body">
-                  Yourk writes a follow-up handoff that includes what it got wrong.
+                  Yourkly writes a follow-up handoff that includes what it got wrong.
                 </div>
               </div>
               <button className="pl-btn review-choice-cta" onClick={askForFix}>

@@ -46,8 +46,8 @@ export default function Help() {
     <div className="screen-padded help-screen">
       <h1 className="help-page-title">Help</h1>
       <p className="help-page-intro">
-        Yourk is a plain-English way to use GitHub. Your files live in your real GitHub
-        account — Yourk just makes it obvious what's going on and what to do next.
+        Yourkly is a plain-English way to use GitHub. Your files live in your real GitHub
+        account — Yourkly just makes it obvious what's going on and what to do next.
       </p>
 
       <div className="help-search">

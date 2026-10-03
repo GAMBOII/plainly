@@ -24,7 +24,7 @@ export default function GettingStarted() {
       <section className="help-section">
         <h2 className="help-section-title">The short version</h2>
         <p className="help-lead">
-          Your work lives in your own GitHub account. Yourk is the front door: it
+          Your work lives in your own GitHub account. Yourkly is the front door: it
           remembers where you stopped, explains what changed in normal words, and keeps
           a Save Point every time you save so you can always go back.
         </p>
@@ -32,7 +32,7 @@ export default function GettingStarted() {
           <p>
             <strong>Two things worth knowing straight away.</strong> Nothing reaches
             GitHub until you press a button that says so — until then your edits are
-            drafts on this computer. And nothing you see in Yourk is made up: every
+            drafts on this computer. And nothing you see in Yourkly is made up: every
             number, filename and date comes from your real project.
           </p>
         </div>
