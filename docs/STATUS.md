@@ -414,3 +414,9 @@ The build is clean: **70 modules, 0 errors, 5.41s** (`npm run build`, 2025-07-12
 - Owner report: the app sidebar showed two logos (two storks). Root cause: BrandWordmark already renders the stork + wordmark lockup, and commit f608258 ("Separate Yourkly stork from wordmark") added a second full-size stork image next to it in the AppShell sidebar. Fix: removed the extra sidebar stork and its import. BrandWordmark is unchanged, so every other usage stays consistent.
 - Owner report: the GitHub home ("landing page for github") looked different from the Yourkly native home. Fix: rebuilt src/pages/NativeProjects.jsx on the same layout as src/pages/Home.jsx: time-based greeting (no name, no login), "Continue where you left off" hero card for the most recently active project (Save Point activity counts, not just creation date), dismissible explainer with native copy (own dismiss key), Recent projects list, and Recent activity fed by Save Points across projects. No AI change inbox for native (there is no handoff data behind it; an always-empty inbox would be decoration, not information). No em dashes in new copy.
 - Validation: `npm run build` passed 2026-09-30. Changes staged, awaiting owner approval to push.
+
+## Current Update (2026-10-03 — full stork in the logo lockup)
+
+- Owner report: the logo was not completely viewable. Root cause: BrandWordmark rendered the stork through a 27x28px crop window (brand-stork-crop), so only a slice of the bird ever showed.
+- Fix: BrandWordmark now renders the full stork image next to the wordmark (28px tall desktop, 24px under 720px, 22px on small mobile landing). Applies everywhere the lockup is used: sidebar, phone top bar, landing headers, loading screens.
+- Validation: `npm run build` passed 2026-10-03. Changes staged, awaiting owner approval to push.

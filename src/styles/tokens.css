@@ -4359,8 +4359,7 @@ a:hover { color: var(--purple-dark); }
    editorial restraint instead of introducing a second visual language. */
 .brand-lockup { display: inline-flex; align-items: center; gap: 8px; height: 34px; }
 .brand-lockup .brand-wordmark { display: block; width: auto; height: 24px; }
-.brand-stork-crop { position: relative; display: block; width: 27px; height: 28px; overflow: hidden; flex: none; }
-.brand-stork-crop img { position: absolute; width: 72px; height: auto; left: -33px; top: -3px; object-fit: contain; }
+.brand-lockup .brand-stork { display: block; width: auto; height: 28px; flex: none; }
 .onboarding-page { min-height: 100dvh; }
 .onboarding-shell { width: min(100% - 40px, 760px); margin: 0 auto; padding-bottom: 72px; }
 .onboarding-shell .landing-header { margin-bottom: 52px; }
@@ -4390,8 +4389,7 @@ a:hover { color: var(--purple-dark); }
 @media (max-width: 720px) {
   .brand-lockup { height: 30px; gap: 6px; }
   .brand-lockup .brand-wordmark { height: 20px; }
-  .brand-stork-crop { width: 23px; height: 24px; }
-  .brand-stork-crop img { width: 63px; left: -29px; top: -3px; }
+  .brand-lockup .brand-stork { height: 24px; }
   .onboarding-shell { width: min(100% - 32px, 520px); padding-bottom: 40px; }
   .onboarding-shell .landing-header { margin-bottom: 30px; }
   .onboarding-shell h1 { font-size: 30px; }
@@ -4502,10 +4500,8 @@ a:hover { color: var(--purple-dark); }
   .mobile-flow .brand-lockup { gap: 5px; height: 27px; }
   .mobile-landing .brand-wordmark,
   .mobile-flow .brand-wordmark { height: 19px; }
-  .mobile-landing .brand-stork-crop,
-  .mobile-flow .brand-stork-crop { width: 22px; height: 23px; }
-  .mobile-landing .brand-stork-crop img,
-  .mobile-flow .brand-stork-crop img { width: 59px; left: -27px; top: -3px; }
+  .mobile-landing .brand-lockup .brand-stork,
+  .mobile-flow .brand-lockup .brand-stork { height: 22px; }
   .mobile-landing .landing-signin,
   .mobile-flow .landing-signin { font-size: 13.5px; }
 
