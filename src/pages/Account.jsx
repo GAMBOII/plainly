@@ -73,7 +73,7 @@ export default function Account({ auth }) {
         <div className="account-permission">
           <div className="account-tick" aria-hidden="true">✓</div>
           <div className="account-permission-text">
-            Yourk can read and save to your projects. You can disconnect any time and your
+            Yourkly can read and save to your projects. You can disconnect any time and your
             files stay in GitHub.
           </div>
         </div>
@@ -83,21 +83,21 @@ export default function Account({ auth }) {
           {connected === 'checking' && 'Checking with GitHub…'}
           {connected === true && (
             <>
-              GitHub lists Yourk as connected to this account. You can see it at{' '}
+              GitHub lists Yourkly as connected to this account. You can see it at{' '}
               <a href="https://github.com/settings/applications" target="_blank" rel="noopener noreferrer">
                 github.com/settings/applications
               </a>.
             </>
           )}
-          {connected === false && 'GitHub no longer lists Yourk as connected. Signing in again will ask you to allow access.'}
-          {connected === null && "Yourk couldn't check with GitHub just now, so it can't tell you whether the connection is still there."}
+          {connected === false && 'GitHub no longer lists Yourkly as connected. Signing in again will ask you to allow access.'}
+          {connected === null && "Yourkly couldn't check with GitHub just now, so it can't tell you whether the connection is still there."}
         </div>
       </div>
 
       <div className="account-card account-card--setting">
         <div className="account-setting-title">Show technical GitHub words</div>
         <div className="account-setting-body">
-          Adds the real GitHub term in grey next to Yourk's plain-English label, so you learn
+          Adds the real GitHub term in grey next to Yourkly's plain-English label, so you learn
           them as you go.
         </div>
         <button className="pl-btn" onClick={toggleWords}>
@@ -110,7 +110,7 @@ export default function Account({ auth }) {
           {signingOut ? 'Signing out…' : 'Sign out'}
         </button>
         <span className="account-signout-note">
-          This also disconnects Yourk from your GitHub account. Your files stay in GitHub,
+          This also disconnects Yourkly from your GitHub account. Your files stay in GitHub,
           and anything you haven't saved yet stays on this computer. Next time you sign in,
           GitHub will ask you to allow access again.
         </span>

@@ -69,7 +69,7 @@ export default function ReturnFromAI({ auth }) {
         updateUpdate(owner, repo, updateId, {
           status: 'changes_detected',
           files: files.length ? files : update.files,
-          storyEntry: `Yourk noticed ${diff.filesChanged} ${diff.filesChanged === 1 ? 'file' : 'files'} changed in GitHub`,
+          storyEntry: `Yourkly noticed ${diff.filesChanged} ${diff.filesChanged === 1 ? 'file' : 'files'} changed in GitHub`,
         })
       }
     } catch {
@@ -99,7 +99,7 @@ export default function ReturnFromAI({ auth }) {
         <span className="section-label section-label--tight">Welcome back</span>
       </div>
       <h1 className="return-title">You continued this update with {ai}.</h1>
-      <p className="return-subtitle">Yourk checked GitHub to see what happened while you were away.</p>
+      <p className="return-subtitle">Yourkly checked GitHub to see what happened while you were away.</p>
 
       {state.status === 'checking' && (
         <p className="state-loading">Checking GitHub for changes…</p>
@@ -124,7 +124,7 @@ export default function ReturnFromAI({ auth }) {
               <div className="return-row-value">
                 {state.files.length
                   ? state.files.join(', ')
-                  : 'Yourk could not list the files.'}
+                  : 'Yourkly could not list the files.'}
               </div>
             </div>
             <div className="return-row">
@@ -150,7 +150,7 @@ export default function ReturnFromAI({ auth }) {
           <div className="return-card-title">Nothing has changed yet</div>
           <p className="return-card-body">
             Your project in GitHub looks exactly as it did before the handoff. That usually means
-            the AI hasn't saved its work yet — or it made changes somewhere Yourk can't see,
+            the AI hasn't saved its work yet — or it made changes somewhere Yourkly can't see,
             like on your own computer.
           </p>
           <div className="return-actions">
@@ -169,7 +169,7 @@ export default function ReturnFromAI({ auth }) {
           </div>
           <p className="return-card-body">
             There {state.commits === 1 ? 'is' : 'are'} {state.commits} new Save{' '}
-            {state.commits === 1 ? 'Point' : 'Points'} that Yourk didn't create. Your work is
+            {state.commits === 1 ? 'Point' : 'Points'} that Yourkly didn't create. Your work is
             safe — but nobody has read through it in plain English yet, so it's worth a look
             before you build on top of it.
           </p>
@@ -188,7 +188,7 @@ export default function ReturnFromAI({ auth }) {
           </div>
           <p className="return-card-body">
             Get the latest version first. If you edit now, you'd be working from an old copy and
-            Yourk would have to ask you to choose between them later.
+            Yourkly would have to ask you to choose between them later.
           </p>
           <div className="return-actions">
             <Link to={`/p/${owner}/${repo}/versions`} className="pl-btn-primary">Get latest version</Link>
@@ -200,7 +200,7 @@ export default function ReturnFromAI({ auth }) {
       {/* 5. Can't check */}
       {state.status === 'offline' && (
         <section className="return-card">
-          <div className="return-card-title">Yourk can't check GitHub right now</div>
+          <div className="return-card-title">Yourkly can't check GitHub right now</div>
           <p className="return-card-body">
             This is a connection problem, not a problem with your work. Nothing has been lost,
             and nothing will be saved until you say so.
@@ -215,9 +215,9 @@ export default function ReturnFromAI({ auth }) {
       {/* No handoff was ever recorded, so there is nothing to compare against. */}
       {state.status === 'nohandoff' && (
         <section className="return-card">
-          <div className="return-card-title">Yourk has nothing to compare against</div>
+          <div className="return-card-title">Yourkly has nothing to compare against</div>
           <p className="return-card-body">
-            This update was never marked as sent, so Yourk didn't record where GitHub was at
+            This update was never marked as sent, so Yourkly didn't record where GitHub was at
             the time. Hand it to an AI and mark it as sent — then this screen can tell you
             exactly what changed.
           </p>

@@ -14,7 +14,7 @@ import { createUpdate } from '../utils/updateMemory'
 import { projectName } from '../utils/projectName'
 
 const AREA_UNKNOWN =
-  'Yourk has not confirmed which file controls this. Your AI can find it from the project ' +
+  'Yourkly has not confirmed which file controls this. Your AI can find it from the project ' +
   'contents included in the handoff.'
 
 /** A short title for lists, taken from the first line of what they wrote. */

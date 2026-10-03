@@ -12,7 +12,7 @@
 // ── The six sections, in sidebar order ────────────────────────────────────────
 export const SECTIONS = [
   { id: 'start',    path: '/help',                 label: 'Getting started' },
-  { id: 'how',      path: '/help/how-it-works',    label: 'How Yourk works' },
+  { id: 'how',      path: '/help/how-it-works',    label: 'How Yourkly works' },
   { id: 'tasks',    path: '/help/tasks',           label: 'What are you trying to do?' },
   { id: 'glossary', path: '/help/glossary',        label: 'Plain-English glossary' },
   { id: 'trouble',  path: '/help/troubleshooting', label: 'When something looks wrong' },
@@ -25,7 +25,7 @@ export const ENTRY_CARDS = [
     path: '/help/how-it-works',
     title: "I'm new to all of this",
     body: 'Four steps, start to finish: sign in, open a project, keep a version, hand it to an AI.',
-    cta: 'Show me how Yourk works',
+    cta: 'Show me how Yourkly works',
   },
   {
     path: '/help/tasks',
@@ -36,7 +36,7 @@ export const ENTRY_CARDS = [
   {
     path: '/help/glossary',
     title: "I hit a word I don't know",
-    body: "Every word Yourk uses, the GitHub word it replaces, and what it actually means.",
+    body: "Every word Yourkly uses, the GitHub word it replaces, and what it actually means.",
     cta: 'Open the glossary',
   },
 ]
@@ -47,8 +47,8 @@ export const STEPS = [
     title: 'Sign in with GitHub',
     body: 'Your GitHub account is your login. No new password, and nothing is copied off GitHub.',
     detail: [
-      'Yourk never stores a copy of your project. It reads and writes your files through GitHub, using the access you granted when you signed in.',
-      'You can take that access away at any time from your GitHub account settings, and Yourk stops seeing anything immediately.',
+      'Yourkly never stores a copy of your project. It reads and writes your files through GitHub, using the access you granted when you signed in.',
+      'You can take that access away at any time from your GitHub account settings, and Yourkly stops seeing anything immediately.',
     ],
     where: 'The Welcome screen, before you sign in.',
   },
@@ -65,17 +65,17 @@ export const STEPS = [
     title: 'Make a Save Point when you want to keep a version',
     body: 'Write one line about what changed. That version is kept forever and you can always go back to it.',
     detail: [
-      'Until you save, edits live on this computer only. Yourk says so on the screen, in those words, because that is the one thing that can lose your work.',
+      'Until you save, edits live on this computer only. Yourkly says so on the screen, in those words, because that is the one thing that can lose your work.',
       'Review and save shows you every changed line before anything reaches GitHub.',
     ],
     where: 'Review and save, then Save Points to see the history.',
   },
   {
     title: 'Hand the project to an AI when you want help',
-    body: 'Yourk writes out the context so Claude, ChatGPT, Gemini, Manus or DeepSeek knows what your project is and what you want changed.',
+    body: 'Yourkly writes out the context so Claude, ChatGPT, Gemini, Manus or DeepSeek knows what your project is and what you want changed.',
     detail: [
       'The handoff carries the project, where you left off, the file list, your recent Save Points, your project instructions, and how you want the AI to report back.',
-      'When you tell Yourk you sent it, Yourk records the exact version your project was at. That is what lets it tell you what changed while you were away.',
+      'When you tell Yourkly you sent it, Yourkly records the exact version your project was at. That is what lets it tell you what changed while you were away.',
     ],
     where: 'Continue with AI, inside any project.',
   },
@@ -126,7 +126,7 @@ export const WALKTHROUGHS = [
     id: 'handoff-ai',
     title: 'I want to give Claude, Manus, or another AI my project',
     steps: [
-      'Open the project in Yourk',
+      'Open the project in Yourkly',
       'Click Continue with AI',
       'Select the AI tool',
       'Review the included context',
@@ -163,7 +163,7 @@ export const GOALS = [
   { id: 'ai',         label: 'I want to use an AI tool',     summary: 'Hand the whole project over so the AI knows the context.' },
   { id: 'changes',    label: 'I want to see what changed',   summary: 'Compare versions line by line and read the project story.' },
   { id: 'undo',       label: 'I want to undo a mistake',     summary: 'Go back to an earlier Save Point without losing anything newer.' },
-  { id: 'publish',    label: 'I want to publish my app',     summary: 'What deploying means, and what Yourk does and does not do yet.' },
+  { id: 'publish',    label: 'I want to publish my app',     summary: 'What deploying means, and what Yourkly does and does not do yet.' },
   { id: 'link',       label: 'I received a GitHub link',     summary: 'How to read a GitHub address and what to do with it.' },
 ]
 
@@ -175,25 +175,25 @@ export const TROUBLESHOOTING = [
     id: 'edits-not-on-github',
     q: "I edited a file, but GitHub doesn't show my change",
     a: [
-      'Edits you make in Yourk are drafts on this computer. They stay on this computer until you open Review and save and press the save button.',
+      'Edits you make in Yourkly are drafts on this computer. They stay on this computer until you open Review and save and press the save button.',
       'Open the project and look for "Changes not saved yet". Everything listed there is waiting for you — nothing has reached GitHub.',
     ],
     link: { label: 'Where saving happens', to: '/help/how-it-works' },
   },
   {
     id: 'ai-changes-missing',
-    q: "The AI says it changed my files, but Yourk shows nothing",
+    q: "The AI says it changed my files, but Yourkly shows nothing",
     a: [
-      'Yourk can only see work that is in GitHub. If the AI edited files in its own workspace and never saved them to your project, there is nothing for Yourk to find yet.',
-      'Ask the AI to save its work to GitHub, then open the update and choose Review project changes. Yourk compares your project against the version it recorded when you marked the handoff as sent.',
+      'Yourkly can only see work that is in GitHub. If the AI edited files in its own workspace and never saved them to your project, there is nothing for Yourkly to find yet.',
+      'Ask the AI to save its work to GitHub, then open the update and choose Review project changes. Yourkly compares your project against the version it recorded when you marked the handoff as sent.',
     ],
     link: { label: 'How handoffs work', to: '/help/tasks' },
   },
   {
     id: 'cannot-check',
-    q: 'Yourk says it can\'t check what changed while you were away',
+    q: 'Yourkly says it can\'t check what changed while you were away',
     a: [
-      'That message is honest, not broken. Yourk records the exact version your project was at when you pressed "Mark as sent". If that record is missing — usually because GitHub could not be reached at that moment — there is no before-picture to compare against.',
+      'That message is honest, not broken. Yourkly records the exact version your project was at when you pressed "Mark as sent". If that record is missing — usually because GitHub could not be reached at that moment — there is no before-picture to compare against.',
       'You can still see everything in Save Points: every version saved to GitHub is listed there with what changed.',
     ],
     link: { label: 'Save Points explained', to: '/help/glossary' },
@@ -202,7 +202,7 @@ export const TROUBLESHOOTING = [
     id: 'no-projects',
     q: 'I signed in but I see no projects',
     a: [
-      'Yourk lists the projects your GitHub account can reach. If a project belongs to an organisation, that organisation may need to approve Yourk before it appears.',
+      'Yourkly lists the projects your GitHub account can reach. If a project belongs to an organisation, that organisation may need to approve Yourkly before it appears.',
       'If the list is genuinely empty, you have not created a project yet. Start a new project and it shows up straight away.',
     ],
     link: { label: 'Start a new project', to: '/new' },
@@ -212,7 +212,7 @@ export const TROUBLESHOOTING = [
     q: 'I closed the tab — is my unsaved work gone?',
     a: [
       'No. Drafts are kept in this browser, on this computer, and are still there when you come back. They are not gone until you save them or clear your browser data.',
-      'They are also not backed up. A draft only exists on the one computer you typed it on, which is why Yourk keeps saying to save.',
+      'They are also not backed up. A draft only exists on the one computer you typed it on, which is why Yourkly keeps saying to save.',
     ],
     link: { label: 'Why saving matters', to: '/help/tasks' },
   },
@@ -237,7 +237,7 @@ export const TROUBLESHOOTING = [
 // unpacked, and this says so rather than implying a one-click install.
 export const EXTENSION = {
   url: 'https://github.com/Naylahknee/yourkly-extension',
-  name: 'Yourk for your browser',
+  name: 'Yourkly for your browser',
   tagline: 'Like Google Translate, but for tech jargon.',
   body: 'A Chrome extension that explains technical words on the sites themselves — GitHub, Vercel, Netlify, Stripe and more. Hover a term for a plain-English tooltip, or open the side panel for what a page is asking you to do.',
   points: [
@@ -262,7 +262,7 @@ export function issueUrl({ kind, summary, section }) {
     '**What I expected instead**',
     '',
     '',
-    '**Where in Yourk**',
+    '**Where in Yourkly**',
     section || '',
     '',
     '---',

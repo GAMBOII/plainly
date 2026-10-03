@@ -402,3 +402,15 @@ The build is clean: **70 modules, 0 errors, 5.41s** (`npm run build`, 2025-07-12
   - All six `/help` routes are now public (Help uses no auth-dependent props) and wrapped in the shell, which adapts: GitHub users see GitHub nav, everyone else sees native destinations.
 - No routes added or removed. No dependency changes. Native storage behavior unchanged (browser localStorage, no login).
 - Validation: `npm run build` passed 2026-09-30. Changes staged, awaiting owner approval to commit/push.
+
+## Current Update (2026-09-30 — "Yourk" leftovers fixed)
+
+- Owner report: some pages rendered "Yourk" instead of "Yourkly". Root cause: an earlier partial rebrand (commit 3d39bda, "Rebrand primary interface as Yourk") renamed Plainly to "Yourk" in 58 user-facing strings; the later full rebrand to "Yourkly" only replaced remaining "Plainly" instances and left the "Yourk" ones untouched.
+- Fix: replaced standalone "Yourk" with "Yourkly" in 11 files (help content, Home, Account, ChooseProjects, Help, NewUpdate, ReturnFromAI, ReviewAIChanges, two help subpages, one github.js error string). No identifiers, domains (yourk.app, tryyourk.com), or storage keys touched.
+- Validation: `npm run build` passed 2026-09-30. Changes staged, awaiting owner approval to push.
+
+## Current Update (2026-09-30 — two logos fixed, native home matches GitHub home)
+
+- Owner report: the app sidebar showed two logos (two storks). Root cause: BrandWordmark already renders the stork + wordmark lockup, and commit f608258 ("Separate Yourkly stork from wordmark") added a second full-size stork image next to it in the AppShell sidebar. Fix: removed the extra sidebar stork and its import. BrandWordmark is unchanged, so every other usage stays consistent.
+- Owner report: the GitHub home ("landing page for github") looked different from the Yourkly native home. Fix: rebuilt src/pages/NativeProjects.jsx on the same layout as src/pages/Home.jsx: time-based greeting (no name, no login), "Continue where you left off" hero card for the most recently active project (Save Point activity counts, not just creation date), dismissible explainer with native copy (own dismiss key), Recent projects list, and Recent activity fed by Save Points across projects. No AI change inbox for native (there is no handoff data behind it; an always-empty inbox would be decoration, not information). No em dashes in new copy.
+- Validation: `npm run build` passed 2026-09-30. Changes staged, awaiting owner approval to push.

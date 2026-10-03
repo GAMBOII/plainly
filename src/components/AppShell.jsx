@@ -31,7 +31,6 @@ import { projectNavItems } from '../utils/projectNav'
 import { SECTIONS as HELP_SECTIONS } from '../help/content'
 import TabBar from './TabBar'
 import BrandWordmark from './BrandWordmark'
-import storkUrl from '../assets/brand/yourkly-stork.png'
 
 function NavItem({ to, label, end }) {
   return (
@@ -113,10 +112,7 @@ export default function AppShell({ auth, children, native }) {
       <nav id="yourkly-nav" className="shell-sidebar" aria-label="Main navigation">
         {/* Wordmark */}
         <Link to={native ? '/native/projects' : '/'} className="shell-wordmark" aria-label="Yourkly home">
-          <span className="shell-brand-lockup">
-            <BrandWordmark className="brand-wordmark--sidebar" />
-            <img className="shell-brand-stork" src={storkUrl} alt="" />
-          </span>
+          <BrandWordmark className="brand-wordmark--sidebar" />
           <span className="shell-tagline">Your work, made clear.</span>
         </Link>
 

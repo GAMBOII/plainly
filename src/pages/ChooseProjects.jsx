@@ -53,7 +53,7 @@ export default function ChooseProjects({ auth }) {
       <Link to="/projects" className="back-link">← My Projects</Link>
       <h1 className="choose-title">Choose which projects appear</h1>
       <p className="choose-intro">
-        Yourk can see every project your GitHub account has access to — your own, ones
+        Yourkly can see every project your GitHub account has access to — your own, ones
         shared with you, and anything belonging to an organisation you're in. Tick the ones
         you actually work on.
       </p>
@@ -66,7 +66,7 @@ export default function ChooseProjects({ auth }) {
 
       {truncated && (
         <p className="choose-truncated">
-          You have more projects than Yourk loads at once, so this list is the first 500.
+          You have more projects than Yourkly loads at once, so this list is the first 500.
           Everything ticked still appears.
         </p>
       )}

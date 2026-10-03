@@ -27,7 +27,7 @@ export default function HowItWorks() {
 
   return (
     <section className="help-section">
-      <h2 className="help-section-title">How Yourk works</h2>
+      <h2 className="help-section-title">How Yourkly works</h2>
       <p className="help-section-intro">
         Four steps, start to finish. Click one to see what it actually involves.
       </p>

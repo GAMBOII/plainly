@@ -481,7 +481,7 @@ export async function mergePullRequest(token, owner, repo, prNumber) {
 export async function getPagesSite(token, owner, repo) {
   const r = await fetch(`${API}/repos/${owner}/${repo}/pages`, { headers: headers(token) })
   if (r.status === 404) return null
-  if (!r.ok) throw new Error("Yourk couldn't check whether this project is published.")
+  if (!r.ok) throw new Error("Yourkly couldn't check whether this project is published.")
   return r.json()
 }
 
