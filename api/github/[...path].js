@@ -16,6 +16,8 @@ function requestedPath(req) {
 }
 
 export default async function handler(req, res) {
+  // Every response can contain account data or authentication state.
+  res.setHeader('Cache-Control', 'no-store')
   if (!METHODS.has(req.method)) return res.status(405).json({ error: 'method_not_allowed' })
   // Same-site GETs may not carry an Origin header. An explicit foreign Origin
   // remains blocked; the encrypted session and CSRF token are still required.
@@ -29,6 +31,7 @@ export default async function handler(req, res) {
 
   try {
     const response = await fetch(`https://api.github.com${path}`, {
+      signal: AbortSignal.timeout(15000),
       method: req.method,
       headers: {
         Authorization: `Bearer ${session.token}`,
@@ -47,3 +50,4 @@ export default async function handler(req, res) {
     res.status(502).json({ error: 'github_unavailable' })
   }
 }
+

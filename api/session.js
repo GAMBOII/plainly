@@ -2,6 +2,8 @@ import { readSession, originIsSameSite } from '../lib/session.js'
 import { limit } from '../lib/security.js'
 
 export default async function handler(req, res) {
+  // Every response can contain account data or authentication state.
+  res.setHeader('Cache-Control', 'no-store')
   if (req.method !== 'GET') return res.status(405).json({ error: 'method_not_allowed' })
   // Browsers often omit Origin on a same-site GET. This endpoint only returns
   // session state; cross-site scripts cannot read it without CORS permission,
@@ -13,6 +15,7 @@ export default async function handler(req, res) {
 
   try {
     const response = await fetch('https://api.github.com/user', {
+      signal: AbortSignal.timeout(7000),
       headers: {
         Authorization: `Bearer ${session.token}`,
         Accept: 'application/vnd.github+json',
@@ -20,9 +23,9 @@ export default async function handler(req, res) {
       },
     })
     if (!response.ok) return res.status(401).json({ error: 'not_signed_in' })
-    res.setHeader('Cache-Control', 'no-store')
     res.json({ user: await response.json(), csrf: session.csrf })
   } catch {
     res.status(503).json({ error: 'session_unavailable' })
   }
 }
+

@@ -420,3 +420,15 @@ The build is clean: **70 modules, 0 errors, 5.41s** (`npm run build`, 2025-07-12
 - Owner report: the logo was not completely viewable. Root cause: BrandWordmark rendered the stork through a 27x28px crop window (brand-stork-crop), so only a slice of the bird ever showed.
 - Fix: BrandWordmark now renders the full stork image next to the wordmark (28px tall desktop, 24px under 720px, 22px on small mobile landing). Applies everywhere the lockup is used: sidebar, phone top bar, landing headers, loading screens.
 - Validation: `npm run build` passed 2026-10-03. Changes staged, awaiting owner approval to push.
+
+
+
+## 2026-10-04 reliability audit
+
+- Added finite timeouts to the server-side GitHub session, proxy, OAuth token exchange, connection check, and revocation requests. A stalled provider now reaches the existing failure responses instead of holding the request open indefinitely. Revocation uses seven seconds, below the existing eight-second browser logout timeout.
+- Added a ten-second initial session lookup timeout so the app stops loading when the session endpoint is unreachable.
+- Session and GitHub proxy responses now send `Cache-Control: no-store` on success and failure.
+- No routes, authentication scopes, provider permissions, or design changed. No dependencies added.
+- Remaining limitations: native projects are local browser storage, not an account-backed cloud service; the process-local rate limiter is not shared across serverless instances. Authenticated GitHub workflows require a connected account for live verification.
+- Validation: production build passes; four Node server reliability tests pass; smoke tests pass after replacing an obsolete frontend-token assertion with the current session-proxy/CSRF check.
+- Updated 14 existing packages within the declared version ranges using nonbreaking audit fixes; npm audit now reports zero vulnerabilities for the installed lockfile. Existing top-level dependencies and architecture remain unchanged.

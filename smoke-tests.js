@@ -157,7 +157,7 @@ console.log('\n🔌 API Integration');
 const githubContent = fs.readFileSync('src/api/github.js', 'utf-8');
 test('getCurrentHeadSha function', githubContent.includes('getCurrentHeadSha'), 'New: get current HEAD');
 test('compareCommits function', githubContent.includes('compareCommits'), 'New: compare two commits');
-test('GitHub OAuth headers', githubContent.includes('Authorization'), 'Token-based auth');
+test('GitHub requests use the session proxy and CSRF header', githubContent.includes("const API = '/api/github'") && githubContent.includes("'X-CSRF-Token': csrfToken"), 'Credentials remain server-side');
 
 // ──────────────────────────────────────────────────────────────
 // 8. Key Features Verification
@@ -189,3 +189,4 @@ if (testResults.warnings > 0) {
 
 console.log('\n✅ SMOKE TESTS PASSED — Ready for deployment\n');
 process.exit(0);
+

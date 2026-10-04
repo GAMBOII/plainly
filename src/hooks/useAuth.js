@@ -12,7 +12,7 @@ export function useAuth() {
     // no longer read or needed, so remove it as soon as the secure session
     // version loads instead of leaving a usable credential in the browser.
     try { localStorage.removeItem('plainly_token') } catch { /* storage may be blocked */ }
-    fetch('/api/session')
+    fetch('/api/session', { signal: AbortSignal.timeout(10000) })
       .then(r => r.ok ? r.json() : null)
       .then(data => {
         if (cancelled || !data?.user || !data?.csrf) return
@@ -73,3 +73,4 @@ export function useAuth() {
 
   return { token, user, loading, signIn, signOut }
 }
+
