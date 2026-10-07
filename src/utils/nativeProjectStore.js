@@ -38,3 +38,40 @@ export function exportNativeProject(projectId){
   const p=nativeProject(projectId); if(!p)return null
   return {format:'yourkly-project-v1',exportedAt:new Date().toISOString(),project:p,files:nativeFiles(projectId),versions:nativeVersions(projectId)}
 }
+// Import a yourkly-project-v1 file (produced by Export project, or by an AI
+// builder that was given the format). Everything gets fresh ids so an import
+// can never collide with — or overwrite — what's already on this device.
+export function importNativeProject(data){
+  if(!data||data.format!=='yourkly-project-v1'||!data.project||typeof data.project.name!=='string')
+    throw new Error('not_a_yourkly_file')
+  const now=new Date().toISOString()
+  const projectId=crypto.randomUUID()
+  const taken=new Set(nativeProjects().map(p=>(p.name||'').trim().toLowerCase()))
+  const base=(data.project.name||'').trim()||'Imported project'
+  let name=base, n=0
+  while(taken.has(name.toLowerCase())){ n++; name=`${base} (imported${n>1?' '+n:''})` }
+  const src=data.project
+  const project={
+    id:projectId,name,slug:src.slug||('imported-'+projectId.slice(0,8)),
+    description:(src.description||'').trim(),provider:'yourkly',
+    visibility:src.visibility||'private',projectType:src.projectType||'other',
+    addAbout:src.addAbout!==false,ignoreTechnicalFiles:src.ignoreTechnicalFiles!==false,
+    usage:src.usage||'private',createdAt:src.createdAt||now,updatedAt:now
+  }
+  const files=(Array.isArray(data.files)?data.files:[]).map(f=>({
+    id:crypto.randomUUID(),projectId,name:String(f&&f.name||'untitled').slice(0,200),
+    content:typeof f.content==='string'?f.content:'',createdAt:(f&&f.createdAt)||now,updatedAt:now
+  }))
+  const versions=(Array.isArray(data.versions)?data.versions:[]).map(v=>({
+    id:crypto.randomUUID(),projectId,label:String((v&&v.label)||'Save Point').slice(0,200),
+    createdAt:(v&&v.createdAt)||now,
+    files:(v&&Array.isArray(v.files)?v.files:[]).map(sf=>({
+      id:crypto.randomUUID(),name:String(sf&&sf.name||'untitled').slice(0,200),
+      content:typeof sf.content==='string'?sf.content:''
+    }))
+  }))
+  write(PROJECTS,[...nativeProjects(),project])
+  write(FILES,[...read(FILES),...files])
+  write(VERSIONS,[...read(VERSIONS),...versions])
+  return project
+}

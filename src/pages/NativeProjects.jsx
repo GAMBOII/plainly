@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { nativeProjects, nativeFiles, nativeVersions } from '../utils/nativeProjectStore'
+import { useRef, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { nativeProjects, nativeFiles, nativeVersions, importNativeProject } from '../utils/nativeProjectStore'
 import { greeting, timeAgo } from '../utils/time'
 
 const EXPLAINER_DISMISSED_KEY = 'yourkly_native_explainer_dismissed'
@@ -34,6 +34,28 @@ function heroNextLine(project) {
 
 export default function NativeProjects() {
   const projects = nativeProjects()
+  const navigate = useNavigate()
+  const fileInputRef = useRef(null)
+  const [importError, setImportError] = useState(null)
+
+  // Import a .yourkly.json project file (exported from Yourkly, or produced
+  // by an AI builder that was given the yourkly-project-v1 format).
+  function onImportFile(e) {
+    const file = e.target.files && e.target.files[0]
+    e.target.value = ''
+    if (!file) return
+    const reader = new FileReader()
+    reader.onload = () => {
+      try {
+        const project = importNativeProject(JSON.parse(reader.result))
+        navigate(`/native/p/${project.id}`)
+      } catch {
+        setImportError("That file isn't a Yourkly project file. Import a .yourkly.json file exported from Yourkly.")
+      }
+    }
+    reader.onerror = () => setImportError("Couldn't read that file. Try again.")
+    reader.readAsText(file)
+  }
   const [explainerDismissed, setExplainerDismissed] = useState(() => {
     try {
       return localStorage.getItem(EXPLAINER_DISMISSED_KEY) === 'true'
@@ -78,8 +100,13 @@ export default function NativeProjects() {
             Here's where you left off, what changed, and what to do next.
           </p>
         </div>
-        <Link to="/native/new" className="pl-btn home-all-projects">New project</Link>
+        <div className="home-header-actions">
+          <button type="button" className="pl-btn" onClick={() => fileInputRef.current && fileInputRef.current.click()}>Import</button>
+          <Link to="/native/new" className="pl-btn home-all-projects">New project</Link>
+        </div>
       </div>
+      <input ref={fileInputRef} type="file" accept=".json,.yourkly.json,application/json" hidden onChange={onImportFile} />
+      {importError && <p className="error-box">{importError}</p>}
 
       {/* 2. Dismissible explainer */}
       {!explainerDismissed && (
@@ -122,6 +149,7 @@ export default function NativeProjects() {
           <div className="home-hero-actions">
             <Link to="/native/new" className="pl-btn-primary home-hero-cta">Make your first project</Link>
           </div>
+          <p className="home-empty-note">Have a project file from another tool? <button type="button" className="text-link text-button-inline" onClick={() => fileInputRef.current && fileInputRef.current.click()}>Import it</button>.</p>
           <div className="translation-strip">
             <div><strong>Project</strong><span>The whole thing you're building.</span></div>
             <div><strong>Files</strong><span>The pieces that make up your project.</span></div>
