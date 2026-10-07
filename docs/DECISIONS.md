@@ -190,3 +190,15 @@ boundary.
 **Alternatives considered:**
 - Keep the introduction step before the workspace — rejected because it added an extra click without changing the next destination.
 - Route Yourkly-only projects through GitHub — rejected because the no-GitHub path is meant to work without connecting a GitHub account.
+
+## D-010 — Restoring a native Save Point auto-saves current work first
+
+**Date:** 2026-10-07
+**Status:** Active
+
+**Decision:** When a user restores a native Save Point, Yourkly first makes a new Save Point of the current files ("Before going back"), then restores. This mirrors the GitHub path's existing rule that a restore never loses newer work.
+
+**Reason:** Non-technical users should never lose work to an undo they did not fully understand. The owner-approved spec asked for the safest option; the product already established this pattern on the GitHub side.
+
+**Alternatives considered:**
+- Warn and ask for confirmation without auto-saving — rejected because a misclick could still destroy unsaved work.

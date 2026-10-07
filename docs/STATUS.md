@@ -432,3 +432,12 @@ The build is clean: **70 modules, 0 errors, 5.41s** (`npm run build`, 2025-07-12
 - Remaining limitations: native projects are local browser storage, not an account-backed cloud service; the process-local rate limiter is not shared across serverless instances. Authenticated GitHub workflows require a connected account for live verification.
 - Validation: production build passes; four Node server reliability tests pass; smoke tests pass after replacing an obsolete frontend-token assertion with the current session-proxy/CSRF check.
 - Updated 14 existing packages within the declared version ranges using nonbreaking audit fixes; npm audit now reports zero vulnerabilities for the installed lockfile. Existing top-level dependencies and architecture remain unchanged.
+
+## Current Update (2026-10-07 — snapshot engine for native Save Points)
+
+- Owner approved the snapshot engine spec and asked for the build. Native Save Points are now content-addressed snapshots instead of full copies: each file's bytes are stored once as a blob (SHA-256 id), each Save Point links to its parent, and the id is a hash of the snapshot content (same design as the tinyvcs prototype).
+- New localStorage keys: `yourkly_native_blobs` (blob map), snapshots in `yourkly_native_versions`. One-time migration converts legacy full-copy Save Points into chained snapshots on first load, keeping the old records under `yourkly_native_versions_backup`. Migration never deletes user data on failure.
+- Behavior changes (all per the approved spec): making a Save Point when nothing changed says so plainly and makes no duplicate; restoring a Save Point first saves current files as "Before going back" so nothing is lost (matches the GitHub path's existing rule); damaged Save Points are refused with a plain message.
+- UI: Save Points tab shows per-save "What changed" (Added / Changed / Removed file names) and plain notices. No new routes, no new dependencies, no GitHub-path changes.
+- Validation: `npm run build` passes (2026-10-07). Store tests pass in node: SHA-256 matches known vectors, snapshot chain, diff, blob dedup, restore with safety save, corruption refusal, legacy migration, export/import round trip in both formats.
+- Not pushed. Awaiting owner approval to ship.
